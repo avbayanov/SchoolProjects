@@ -1,7 +1,6 @@
 package me.bayanov.shapes;
 
 public class Triangle implements Shape {
-
     private double x1;
     private double y1;
     private double x2;
@@ -35,40 +34,21 @@ public class Triangle implements Shape {
         return 0.5 * Math.abs((x1 - x3) * (y2 - y1) - (x1 - x2) * (y3 - y1));
     }
 
+    private double getLineLength(double xA, double yA, double xB, double yB) {
+        return Math.sqrt(Math.pow(xB - xA, 2) + Math.pow(yB - yA, 2));
+    }
+
     @Override
     public double getPerimeter() {
-        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)) +
-                Math.sqrt(Math.pow(x3 - x2, 2) + Math.pow(y3 - y2, 2)) +
-                Math.sqrt(Math.pow(x1 - x3, 2) + Math.pow(y1 - y3, 2));
+        return getLineLength(x1, y1, x2, y2) + getLineLength(x2, y2, x3, y3) + getLineLength(x3, y3, x1, y1);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Triangle {");
-        sb.append(System.lineSeparator());
-        sb.append("    x1 = ");
-        sb.append(x1);
-        sb.append(System.lineSeparator());
-        sb.append("    y1 = ");
-        sb.append(y1);
-        sb.append(System.lineSeparator());
-        sb.append("    x2 = ");
-        sb.append(x2);
-        sb.append(System.lineSeparator());
-        sb.append("    y2 = ");
-        sb.append(y2);
-        sb.append(System.lineSeparator());
-        sb.append("    x3 = ");
-        sb.append(x3);
-        sb.append(System.lineSeparator());
-        sb.append("    y3 = ");
-        sb.append(y3);
-        sb.append(System.lineSeparator());
-        sb.append("}");
-
-        return sb.toString();
+        return "Triangle {" + System.lineSeparator() + "    x1 = " + x1 + System.lineSeparator()
+                + "    y1 = " + y1 + System.lineSeparator() + "    x2 = " + x2 + System.lineSeparator()
+                + "    y2 = " + y2 + System.lineSeparator() + "    x3 = " + x3 + System.lineSeparator()
+                + "    y3 = " + y3 + System.lineSeparator() + "}";
     }
 
     @Override

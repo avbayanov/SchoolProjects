@@ -1,50 +1,38 @@
 package me.bayanov.shapes;
 
 public class Rectangle implements Shape {
+    private double sideA;
+    private double sideB;
 
-    private double a;
-    private double b;
-
-    public Rectangle(double a, double b) {
-        this.a = a;
-        this.b = b;
+    public Rectangle(double sideA, double sideB) {
+        this.sideA = sideA;
+        this.sideB = sideB;
     }
 
     @Override
     public double getWidth() {
-        return a;
+        return sideA;
     }
 
     @Override
     public double getHeight() {
-        return b;
+        return sideB;
     }
 
     @Override
     public double getArea() {
-        return a * b;
+        return sideA * sideB;
     }
 
     @Override
     public double getPerimeter() {
-        return (a + b) * 2;
+        return (sideA + sideB) * 2;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Rectangle {");
-        sb.append(System.lineSeparator());
-        sb.append("    a = ");
-        sb.append(a);
-        sb.append(System.lineSeparator());
-        sb.append("    b = ");
-        sb.append(b);
-        sb.append(System.lineSeparator());
-        sb.append("}");
-
-        return sb.toString();
+        return "Rectangle {" + System.lineSeparator() + "    sideA = " + sideA + System.lineSeparator()
+                + "    sideB = " + sideB + System.lineSeparator() + "}";
     }
 
     @Override
@@ -58,7 +46,7 @@ public class Rectangle implements Shape {
         }
 
         Rectangle rectangle = (Rectangle) obj;
-        return this.a == rectangle.a && this.b == rectangle.b;
+        return this.sideA == rectangle.sideA && this.sideB == rectangle.sideB;
     }
 
     @Override
@@ -66,8 +54,8 @@ public class Rectangle implements Shape {
         final int prime = 5;
 
         int hash = 1;
-        hash = prime * hash + Double.hashCode(a);
-        hash = prime * hash + Double.hashCode(b);
+        hash = prime * hash + Double.hashCode(sideA);
+        hash = prime * hash + Double.hashCode(sideB);
 
         return hash;
     }

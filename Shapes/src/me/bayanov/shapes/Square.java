@@ -1,45 +1,35 @@
 package me.bayanov.shapes;
 
 public class Square implements Shape {
+    private double side;
 
-    private double a;
-
-    public Square(double a) {
-        this.a = a;
+    public Square(double side) {
+        this.side = side;
     }
 
     @Override
     public double getWidth() {
-        return a;
+        return side;
     }
 
     @Override
     public double getHeight() {
-        return a;
+        return side;
     }
 
     @Override
     public double getArea() {
-        return Math.pow(a, 2);
+        return Math.pow(side, 2);
     }
 
     @Override
     public double getPerimeter() {
-        return a * 4;
+        return side * 4;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Square {");
-        sb.append(System.lineSeparator());
-        sb.append("    a = ");
-        sb.append(a);
-        sb.append(System.lineSeparator());
-        sb.append("}");
-
-        return sb.toString();
+        return "Square {" + System.lineSeparator() + "    side = " + side + System.lineSeparator() + "}";
     }
 
     @Override
@@ -53,16 +43,11 @@ public class Square implements Shape {
         }
 
         Square square = (Square) obj;
-        return this.a == square.a;
+        return this.side == square.side;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 5;
-
-        int hash = 1;
-        hash = prime * hash + Double.hashCode(a);
-
-        return hash;
+        return Double.hashCode(side);
     }
 }

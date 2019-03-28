@@ -1,45 +1,35 @@
 package me.bayanov.shapes;
 
 public class Circle implements Shape {
+    private double radius;
 
-    private double r;
-
-    public Circle(double r) {
-        this.r = r;
+    public Circle(double radius) {
+        this.radius = radius;
     }
 
     @Override
     public double getWidth() {
-        return r * 2;
+        return radius * 2;
     }
 
     @Override
     public double getHeight() {
-        return r * 2;
+        return radius * 2;
     }
 
     @Override
     public double getArea() {
-        return Math.PI * Math.pow(r, 2);
+        return Math.PI * Math.pow(radius, 2);
     }
 
     @Override
     public double getPerimeter() {
-        return 2 * Math.PI * r;
+        return 2 * Math.PI * radius;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("Circle {");
-        sb.append(System.lineSeparator());
-        sb.append("    r = ");
-        sb.append(r);
-        sb.append(System.lineSeparator());
-        sb.append("}");
-
-        return sb.toString();
+        return "Circle {" + System.lineSeparator() + "    radius = " + radius + System.lineSeparator() + "}";
     }
 
     @Override
@@ -53,16 +43,11 @@ public class Circle implements Shape {
         }
 
         Circle circle = (Circle) obj;
-        return this.r == circle.r;
+        return this.radius == circle.radius;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 5;
-
-        int hash = 1;
-        hash = prime * hash + Double.hashCode(r);
-
-        return hash;
+        return Double.hashCode(radius);
     }
 }
