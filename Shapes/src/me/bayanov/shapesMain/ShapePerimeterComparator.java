@@ -1,4 +1,6 @@
-package me.bayanov.shapes;
+package me.bayanov.shapesMain;
+
+import me.bayanov.shapes.Shape;
 
 import java.util.Comparator;
 
