@@ -34,7 +34,7 @@ public class Triangle implements Shape {
         return 0.5 * Math.abs((x1 - x3) * (y2 - y1) - (x1 - x2) * (y3 - y1));
     }
 
-    private double getLineLength(double xA, double yA, double xB, double yB) {
+    private static double getLineLength(double xA, double yA, double xB, double yB) {
         return Math.sqrt(Math.pow(xB - xA, 2) + Math.pow(yB - yA, 2));
     }
 
