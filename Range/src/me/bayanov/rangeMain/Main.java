@@ -1,15 +1,16 @@
-package me.bayanov.range;
+package me.bayanov.rangeMain;
+
+import me.bayanov.range.Range;
 
 import java.util.Scanner;
 
 public class Main {
-
     private static Range fillFromUser(Scanner scanner) {
         System.out.print("  from: ");
-        float from = scanner.nextFloat();
+        double from = scanner.nextFloat();
 
         System.out.print("  to: ");
-        float to = scanner.nextFloat();
+        double to = scanner.nextFloat();
 
         scanner.nextLine();
 
@@ -65,22 +66,41 @@ public class Main {
         System.out.println();
     }
 
-    private static void userGetComplement(Scanner scanner, Range range) {
+    private static void userGetDifference(Scanner scanner, Range range) {
         System.out.println("Enter another range:");
         Range anotherRange = fillFromUser(scanner);
 
-        Range[] rangeComplement = range.getComplement(anotherRange);
-        if (rangeComplement.length == 1) {
-            System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f]",
-                    range.getFrom(), range.getTo(),
-                    anotherRange.getFrom(), anotherRange.getTo(),
-                    rangeComplement[0].getFrom(), rangeComplement[0].getTo());
-        } else if (rangeComplement.length == 2) {
+        Range[] rangeDifference = range.getDifference(anotherRange);
+        if (rangeDifference.length == 1) {
+            if (rangeDifference[0].getTo() > range.getFrom()
+                    && rangeDifference[0].getTo() < range.getTo()
+                    || range.getTo() == anotherRange.getFrom()) {
+                System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f)",
+                        range.getFrom(), range.getTo(),
+                        anotherRange.getFrom(), anotherRange.getTo(),
+                        rangeDifference[0].getFrom(), rangeDifference[0].getTo());
+
+            } else if (rangeDifference[0].getFrom() > range.getFrom()
+                    && rangeDifference[0].getFrom() < range.getTo()
+                    || range.getFrom() == anotherRange.getTo()) {
+                System.out.printf("[%f, %f] \\ [%f, %f] = (%f, %f]",
+                        range.getFrom(), range.getTo(),
+                        anotherRange.getFrom(), anotherRange.getTo(),
+                        rangeDifference[0].getFrom(), rangeDifference[0].getTo());
+            } else {
+                System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f]",
+                        range.getFrom(), range.getTo(),
+                        anotherRange.getFrom(), anotherRange.getTo(),
+                        rangeDifference[0].getFrom(), rangeDifference[0].getTo());
+            }
+
+
+        } else if (rangeDifference.length == 2) {
             System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f) \u222A (%f, %f]",
                     range.getFrom(), range.getTo(),
                     anotherRange.getFrom(), anotherRange.getTo(),
-                    rangeComplement[0].getFrom(), rangeComplement[0].getTo(),
-                    rangeComplement[1].getFrom(), rangeComplement[1].getTo());
+                    rangeDifference[0].getFrom(), rangeDifference[0].getTo(),
+                    rangeDifference[1].getFrom(), rangeDifference[1].getTo());
         } else {
             System.out.printf("[%f, %f] \\ [%f, %f] = \u2205",
                     range.getFrom(), range.getTo(),
@@ -103,7 +123,7 @@ public class Main {
             System.out.println("2) check is number inside of range");
             System.out.println("3) get intersection of range with another range");
             System.out.println("4) get union of range with another range");
-            System.out.println("5) get complement of range with another range");
+            System.out.println("5) get difference of range with another range");
             System.out.println("0) quit program");
             System.out.print("Your choice: ");
 
@@ -126,7 +146,7 @@ public class Main {
                     break;
                 }
                 case "5": {
-                    userGetComplement(scanner, range);
+                    userGetDifference(scanner, range);
                     break;
                 }
                 default: {
