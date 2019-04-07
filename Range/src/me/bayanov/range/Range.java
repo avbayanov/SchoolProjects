@@ -35,7 +35,7 @@ public class Range {
             throw new NullPointerException("Range must not be null");
         }
 
-        if (isInside(range.from) || isInside(range.to)) {
+        if (isInside(range.from) || isInside(range.to) || range.isInside(from) || range.isInside(to)) {
             return new Range(Math.max(from, range.from), Math.min(to, range.to));
         } else {
             return null;
