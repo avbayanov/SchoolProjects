@@ -72,6 +72,7 @@ public class Main {
 
         Range[] rangeDifference = range.getDifference(anotherRange);
         if (rangeDifference.length == 1) {
+
             if (rangeDifference[0].getTo() > range.getFrom()
                     && rangeDifference[0].getTo() < range.getTo()
                     || range.getTo() == anotherRange.getFrom()) {
@@ -79,21 +80,18 @@ public class Main {
                         range.getFrom(), range.getTo(),
                         anotherRange.getFrom(), anotherRange.getTo(),
                         rangeDifference[0].getFrom(), rangeDifference[0].getTo());
-
             } else if (rangeDifference[0].getFrom() > range.getFrom()
                     && rangeDifference[0].getFrom() < range.getTo()
                     || range.getFrom() == anotherRange.getTo()) {
                 System.out.printf("[%f, %f] \\ [%f, %f] = (%f, %f]",
                         range.getFrom(), range.getTo(),
-                        anotherRange.getFrom(), anotherRange.getTo(),
-                        rangeDifference[0].getFrom(), rangeDifference[0].getTo());
+                        anotherRange.getFrom(), anotherRange.getTo(), rangeDifference[0].getFrom(), rangeDifference[0].getTo());
             } else {
                 System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f]",
                         range.getFrom(), range.getTo(),
                         anotherRange.getFrom(), anotherRange.getTo(),
                         rangeDifference[0].getFrom(), rangeDifference[0].getTo());
             }
-
 
         } else if (rangeDifference.length == 2) {
             System.out.printf("[%f, %f] \\ [%f, %f] = [%f, %f) \u222A (%f, %f]",
@@ -116,7 +114,7 @@ public class Main {
         Range range = fillFromUser(scanner);
 
         loop:
-        for (;;) {
+        for (; ; ) {
             System.out.println();
             System.out.println("Actions:");
             System.out.println("1) get length of range");
