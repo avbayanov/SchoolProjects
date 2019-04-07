@@ -176,20 +176,9 @@ public class Vector {
             throw new  NullPointerException("Each vector must be not null");
         }
 
-        int maxSize;
-        if (vector1.components.length > vector2.components.length) {
-            maxSize = vector1.components.length;
-        } else {
-            maxSize = vector2.components.length;
-        }
-
         double sumOfMultipliedPairs = 0;
-        for (int i = 0; i < maxSize; i++) {
-            if (i >= vector1.components.length || i >= vector2.components.length) {
-                break;
-            } else {
-                sumOfMultipliedPairs += vector1.components[i] * vector2.components[i];
-            }
+        for (int i = 0; i < Math.min(vector1.components.length, vector2.components.length); i++) {
+            sumOfMultipliedPairs += vector1.components[i] * vector2.components[i];
         }
 
         return sumOfMultipliedPairs;
