@@ -35,26 +35,10 @@ public class Range {
             throw new NullPointerException("Range must not be null");
         }
 
-        if (range.from >= from) {
-            if (range.to >= to) {
-                if (range.from > to) {
-                    return null;
-                } else {
-                    return new Range(range.from, to);
-                }
-            } else {
-                return new Range(range.from, range.to);
-            }
+        if (to >= range.from && from <= range.from || from <= range.to && to >= range.to) {
+            return new Range(Math.max(from, range.from), Math.min(to, range.to));
         } else {
-            if (range.to >= to) {
-                return new Range(from, to);
-            } else {
-                if (from > range.to) {
-                    return null;
-                } else {
-                    return new Range(from, range.to);
-                }
-            }
+            return null;
         }
     }
 
