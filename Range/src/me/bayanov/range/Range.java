@@ -62,23 +62,19 @@ public class Range {
             throw new NullPointerException("Range must not be null");
         }
 
-        if (to > range.from) {
-            if (from < range.to) {
-                if (from >= range.from) {
-                    if (to > range.to) {
-                        return new Range[]{new Range(range.to, to)};
-                    } else {
-                        return new Range[]{};
-                    }
+        if (to > range.from && from < range.to) {
+            if (from >= range.from) {
+                if (to > range.to) {
+                    return new Range[]{new Range(range.to, to)};
                 } else {
-                    if (to > range.to) {
-                        return new Range[]{new Range(from, range.from), new Range(range.to, to)};
-                    } else {
-                        return new Range[]{new Range(from, range.from)};
-                    }
+                    return new Range[]{};
                 }
             } else {
-                return new Range[]{new Range(from, to)};
+                if (to > range.to) {
+                    return new Range[]{new Range(from, range.from), new Range(range.to, to)};
+                } else {
+                    return new Range[]{new Range(from, range.from)};
+                }
             }
         } else {
             return new Range[]{new Range(from, to)};
