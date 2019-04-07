@@ -30,7 +30,7 @@ public class Range {
         return input >= from && input <= to;
     }
 
-    public Range getIntersection(Range range) throws NullPointerException {
+    public Range getIntersection(Range range) {
         if (range == null) {
             throw new NullPointerException("Range must not be null");
         }
@@ -58,7 +58,7 @@ public class Range {
         }
     }
 
-    public Range[] getUnion(Range range) throws NullPointerException {
+    public Range[] getUnion(Range range) {
         if (range == null) {
             throw new NullPointerException("Range must not be null");
         }
@@ -86,7 +86,7 @@ public class Range {
         }
     }
 
-    public Range[] getDifference(Range range) throws NullPointerException {
+    public Range[] getDifference(Range range) {
         if (range == null) {
             throw new NullPointerException("Range must not be null");
         }
