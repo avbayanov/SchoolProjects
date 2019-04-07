@@ -90,8 +90,20 @@ public class Vector {
             throw new  NullPointerException("Vector must be not null");
         }
 
-        Vector result = subtract(this, vector);
-        components = result.components;
+        double[] result = new double[Math.max(components.length, vector.components.length)];
+
+        for (int i = 0; i < result.length; i++) {
+            if (i >= components.length) {
+                result[i] = -vector.components[i];
+            } else if (i >= vector.components.length) {
+                result[i] = components[i];
+            } else {
+                result[i] = components[i] - vector.components[i];
+            }
+
+        }
+
+        components = result;
     }
 
     public void multiplyOnScalar(double scalar) {
@@ -144,24 +156,8 @@ public class Vector {
             throw new  NullPointerException("Each vector must be not null");
         }
 
-        double[] result;
-
-        if (vector1.components.length > vector2.components.length) {
-            result = new double[vector1.components.length];
-        } else {
-            result = new double[vector2.components.length];
-        }
-
-        for (int i = 0; i < result.length; i++) {
-            if (i >= vector1.components.length) {
-                result[i] = -vector2.components[i];
-            } else if (i >= vector2.components.length) {
-                result[i] = vector1.components[i];
-            } else {
-                result[i] = vector1.components[i] - vector2.components[i];
-            }
-
-        }
+        Vector result = new Vector(vector1);
+        result.subtract(vector2);
 
         return new Vector(result);
     }
