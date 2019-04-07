@@ -132,8 +132,11 @@ public class Vector {
     }
 
     public static Vector add(Vector vector1, Vector vector2) {
-        if (vector1 == null || vector2 == null) {
-            throw new NullPointerException("Each vector must be not null");
+        if (vector1 == null) {
+            throw new NullPointerException("First Vector must be not null");
+        }
+        if (vector2 == null) {
+            throw new NullPointerException("Second Vector must be not null");
         }
 
         Vector result = new Vector(vector1);
@@ -143,8 +146,11 @@ public class Vector {
     }
 
     public static Vector subtract(Vector vector1, Vector vector2) {
-        if (vector1 == null || vector2 == null) {
-            throw new NullPointerException("Each vector must be not null");
+        if (vector1 == null) {
+            throw new NullPointerException("First Vector must be not null");
+        }
+        if (vector2 == null) {
+            throw new NullPointerException("Second Vector must be not null");
         }
 
         Vector result = new Vector(vector1);
@@ -154,8 +160,11 @@ public class Vector {
     }
 
     public static double scalarProduct(Vector vector1, Vector vector2) {
-        if (vector1 == null || vector2 == null) {
-            throw new NullPointerException("Each vector must be not null");
+        if (vector1 == null) {
+            throw new NullPointerException("First Vector must be not null");
+        }
+        if (vector2 == null) {
+            throw new NullPointerException("Second Vector must be not null");
         }
 
         int minSize = Math.min(vector1.components.length, vector2.components.length);
