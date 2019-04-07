@@ -90,9 +90,7 @@ public class Vector {
     }
 
     public void reverse() {
-        for (int i = 0; i < components.length; i++) {
-            components[i] = -components[i];
-        }
+        multiplyOnScalar(-1);
     }
 
     public double getLength() {
