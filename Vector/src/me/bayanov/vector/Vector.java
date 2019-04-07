@@ -6,6 +6,9 @@ public class Vector {
     private double[] components;
 
     public Vector(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("Vector length must be > 0");
+        }
         components = new double[length];
     }
 
