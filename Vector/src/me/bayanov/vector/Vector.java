@@ -152,7 +152,7 @@ public class Vector {
         Vector result = new Vector(vector1);
         result.add(vector2);
 
-        return new Vector(result);
+        return result;
     }
 
     public static Vector subtract(Vector vector1, Vector vector2) {
@@ -163,7 +163,7 @@ public class Vector {
         Vector result = new Vector(vector1);
         result.subtract(vector2);
 
-        return new Vector(result);
+        return result;
     }
 
     public static double scalarProduct(Vector vector1, Vector vector2) {
