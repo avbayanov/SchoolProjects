@@ -20,7 +20,7 @@ public class Vector {
         this.components = Arrays.copyOf(components, components.length);
     }
 
-    public Vector(int length, double[] components) throws IllegalArgumentException {
+    public Vector(int length, double[] components) {
         if (length <= 0) {
             throw new IllegalArgumentException("Vector length must be > 0");
         }
@@ -65,7 +65,7 @@ public class Vector {
         return components.length;
     }
 
-    public void add(Vector vector) throws NullPointerException {
+    public void add(Vector vector) {
         if (vector == null) {
             throw new  NullPointerException("Vector must be not null");
         }
@@ -74,7 +74,7 @@ public class Vector {
         components = result.components;
     }
 
-    public void subtract(Vector vector) throws NullPointerException {
+    public void subtract(Vector vector) {
         if (vector == null) {
             throw new  NullPointerException("Vector must be not null");
         }
@@ -105,21 +105,21 @@ public class Vector {
         return Math.sqrt(sumOfSquaredComponents);
     }
 
-    public double getComponent(int index) throws IndexOutOfBoundsException {
+    public double getComponent(int index) {
         if (index < 0 || index >= components.length) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (vector length - 1)");
         }
         return components[index];
     }
 
-    public void setComponent(int index, double component) throws IndexOutOfBoundsException {
+    public void setComponent(int index, double component) {
         if (index < 0 || index >= components.length) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (vector length - 1)");
         }
         components[index] = component;
     }
 
-    public static Vector add(Vector vector1, Vector vector2) throws NullPointerException {
+    public static Vector add(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
             throw new  NullPointerException("Each vector must be not null");
         }
@@ -146,7 +146,7 @@ public class Vector {
         return new Vector(result);
     }
 
-    public static Vector subtract(Vector vector1, Vector vector2) throws NullPointerException {
+    public static Vector subtract(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
             throw new  NullPointerException("Each vector must be not null");
         }
@@ -173,7 +173,7 @@ public class Vector {
         return new Vector(result);
     }
 
-    public static double scalarProduct(Vector vector1, Vector vector2) throws NullPointerException {
+    public static double scalarProduct(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
             throw new  NullPointerException("Each vector must be not null");
         }
