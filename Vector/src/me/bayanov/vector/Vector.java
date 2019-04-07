@@ -17,6 +17,10 @@ public class Vector {
     }
 
     public Vector(double[] components) {
+        if (components.length == 0) {
+            throw new IllegalArgumentException("Vector length must be > 0");
+        }
+
         this.components = Arrays.copyOf(components, components.length);
     }
 
