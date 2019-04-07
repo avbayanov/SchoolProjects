@@ -107,14 +107,14 @@ public class Vector {
 
     public double getComponent(int index) {
         if (index < 0 || index >= components.length) {
-            throw new IndexOutOfBoundsException("Index must be between 0 and (vector length - 1)");
+            throw new IndexOutOfBoundsException("Index must be between 0 and (vector size - 1)");
         }
         return components[index];
     }
 
     public void setComponent(int index, double component) {
         if (index < 0 || index >= components.length) {
-            throw new IndexOutOfBoundsException("Index must be between 0 and (vector length - 1)");
+            throw new IndexOutOfBoundsException("Index must be between 0 and (vector size - 1)");
         }
         components[index] = component;
     }
