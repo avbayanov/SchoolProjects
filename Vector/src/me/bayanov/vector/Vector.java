@@ -158,8 +158,9 @@ public class Vector {
             throw new NullPointerException("Each vector must be not null");
         }
 
+        int minSize = Math.min(vector1.components.length, vector2.components.length);
         double sumOfMultipliedPairs = 0;
-        for (int i = 0; i < Math.min(vector1.components.length, vector2.components.length); i++) {
+        for (int i = 0; i < minSize; i++) {
             sumOfMultipliedPairs += vector1.components[i] * vector2.components[i];
         }
 
