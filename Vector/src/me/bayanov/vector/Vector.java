@@ -88,20 +88,13 @@ public class Vector {
             throw new NullPointerException("Vector must be not null");
         }
 
-        double[] result = new double[Math.max(components.length, vector.components.length)];
-
-        for (int i = 0; i < result.length; i++) {
-            if (i >= components.length) {
-                result[i] = -vector.components[i];
-            } else if (i >= vector.components.length) {
-                result[i] = components[i];
-            } else {
-                result[i] = components[i] - vector.components[i];
-            }
-
+        if (vector.components.length > components.length) {
+            components = Arrays.copyOf(components, vector.components.length);
         }
 
-        components = result;
+        for (int i = 0; i < vector.components.length; i++) {
+            components[i] -= vector.components[i];
+        }
     }
 
     public void multiplyOnScalar(double scalar) {
