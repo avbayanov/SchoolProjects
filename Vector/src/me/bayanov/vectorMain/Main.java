@@ -11,9 +11,6 @@ public class Main {
         Vector vector1 = new Vector(doubles);
 
         Vector vector2 = new Vector(7, doubles);
-
-//        vector1.add(vector2);
-//        System.out.println("{1, 2, 3, 4, 5}" + " + " + vector2 + " = " + vector1);
         System.out.println(vector1 + " + " + vector2 + " = " + Vector.add(vector1, vector2));
         System.out.println(vector1 + " - " + vector2 + " = " + Vector.subtract(vector1, vector2));
 
