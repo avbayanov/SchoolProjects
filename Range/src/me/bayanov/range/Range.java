@@ -35,7 +35,10 @@ public class Range {
             throw new NullPointerException("Range must not be null");
         }
 
-        if (isInside(range.from) || isInside(range.to) || range.isInside(from) || range.isInside(to)) {
+        if ((range.from >= from && range.from <= to)
+                || (range.to >= from && range.to <= to)
+                || (from >= range.from && from <= range.to)
+                || (to >= range.from && to <= range.to)) {
             return new Range(Math.max(from, range.from), Math.min(to, range.to));
         } else {
             return null;
@@ -47,7 +50,10 @@ public class Range {
             throw new NullPointerException("Range must not be null");
         }
 
-        if (isInside(range.from) || isInside(range.to) || range.isInside(from) || range.isInside(to)) {
+        if ((range.from >= from && range.from <= to)
+                || (range.to >= from && range.to <= to)
+                || (from >= range.from && from <= range.to)
+                || (to >= range.from && to <= range.to)) {
             return new Range[]{new Range(Math.min(from, range.from), Math.max(to, range.to))};
         } else {
             return new Range[]{
