@@ -32,7 +32,7 @@ public class Vector {
         StringBuilder sb = new StringBuilder();
 
         sb.append("{ ");
-        for (double component: components) {
+        for (double component : components) {
             sb.append(component);
             sb.append(", ");
         }
@@ -67,7 +67,7 @@ public class Vector {
 
     public void add(Vector vector) {
         if (vector == null) {
-            throw new  NullPointerException("Vector must be not null");
+            throw new NullPointerException("Vector must be not null");
         }
 
         double[] result = new double[Math.max(components.length, vector.components.length)];
@@ -87,7 +87,7 @@ public class Vector {
 
     public void subtract(Vector vector) {
         if (vector == null) {
-            throw new  NullPointerException("Vector must be not null");
+            throw new NullPointerException("Vector must be not null");
         }
 
         double[] result = new double[Math.max(components.length, vector.components.length)];
@@ -119,7 +119,7 @@ public class Vector {
     public double getLength() {
         double sumOfSquaredComponents = 0;
 
-        for (double component: components) {
+        for (double component : components) {
             sumOfSquaredComponents += Math.pow(component, 2);
         }
 
@@ -142,7 +142,7 @@ public class Vector {
 
     public static Vector add(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
-            throw new  NullPointerException("Each vector must be not null");
+            throw new NullPointerException("Each vector must be not null");
         }
 
         Vector result = new Vector(vector1);
@@ -153,7 +153,7 @@ public class Vector {
 
     public static Vector subtract(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
-            throw new  NullPointerException("Each vector must be not null");
+            throw new NullPointerException("Each vector must be not null");
         }
 
         Vector result = new Vector(vector1);
@@ -164,7 +164,7 @@ public class Vector {
 
     public static double scalarProduct(Vector vector1, Vector vector2) {
         if (vector1 == null || vector2 == null) {
-            throw new  NullPointerException("Each vector must be not null");
+            throw new NullPointerException("Each vector must be not null");
         }
 
         double sumOfMultipliedPairs = 0;
