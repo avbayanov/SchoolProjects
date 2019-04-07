@@ -83,7 +83,7 @@ public class Vector {
         components = result.components;
     }
 
-    public void scalarMultiple(double scalar) {
+    public void multiplyOnScalar(double scalar) {
         for (int i = 0; i < components.length; i++) {
             components[i] *= scalar;
         }

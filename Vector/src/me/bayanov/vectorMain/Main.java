@@ -17,7 +17,7 @@ public class Main {
 
         double multiplier = 5;
         System.out.print(vector1 + " * " + multiplier + " = ");
-        vector1.scalarMultiple(5);
+        vector1.multiplyOnScalar(5);
         System.out.println(vector1);
 
         Vector vector3 = new Vector(vector2);
