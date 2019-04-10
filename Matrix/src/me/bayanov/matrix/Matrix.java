@@ -62,7 +62,23 @@ public class Matrix {
             throw new IllegalArgumentException("Vectors size must be > 0");
         }
 
-        rows = Arrays.copyOf(vectors, vectors.length);
+        rows = new Vector[vectors.length];
+
+        int maxRowLength = vectors[0].getSize();
+        for (Vector row : vectors) {
+            if (row.getSize() > maxRowLength) {
+                maxRowLength = row.getSize();
+            }
+        }
+
+        for (int i = 0; i < vectors.length; i++) {
+            double[] row = new double[vectors[i].getSize()];
+            for (int j = 0; j < vectors[i].getSize(); j++) {
+                row[j] = vectors[i].getComponent(j);
+            }
+
+            rows[i] = new Vector(maxRowLength, row);
+        }
     }
 
     @Override
