@@ -83,7 +83,7 @@ public class Matrix {
         if (index < 0 || index >= rows.length) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
-        return rows[index];
+        return new Vector(rows[index]);
     }
 
     public void setRow(int index, Vector row) {
