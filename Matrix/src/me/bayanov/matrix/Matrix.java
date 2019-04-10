@@ -225,11 +225,7 @@ public class Matrix {
         }
 
         for (int i = 0; i < getRowsCount(); i++) {
-            Vector currentRowInMatrix = matrix.getRow(i);
-
-            for (int j = 0; j < getColumnsCount(); j++) {
-                rows[i].setComponent(j, rows[i].getComponent(j) + currentRowInMatrix.getComponent(j));
-            }
+            rows[i].add(matrix.getRow(i));
         }
     }
 
