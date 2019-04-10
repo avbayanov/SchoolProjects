@@ -80,22 +80,22 @@ public class Matrix {
     }
 
     public Vector getRow(int index) {
-        if (index < 0 || index >= rows.length) {
+        if (index < 0 || index >= getRowsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
         return new Vector(rows[index]);
     }
 
     public void setRow(int index, Vector row) {
-        if (index < 0 || index >= rows.length) {
+        if (index < 0 || index >= getRowsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
-        if (row.getSize() > rows[0].getSize()) {
+        if (row.getSize() > getColumnsCount()) {
             throw new IllegalArgumentException("Row size must be between 1 and (columns count - 1)");
         }
 
-        if (row.getSize() < rows[0].getSize()) {
-            rows[index] = new Vector(rows[0].getSize());
+        if (row.getSize() < getColumnsCount()) {
+            rows[index] = new Vector(getColumnsCount());
 
             for (int i = 0; i < row.getSize(); i++) {
                 rows[index].setComponent(i, row.getComponent(i));
@@ -106,12 +106,12 @@ public class Matrix {
     }
 
     public Vector getColumn(int index) {
-        if (index < 0 || index >= rows[0].getSize()) {
+        if (index < 0 || index >= getColumnsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (columns count - 1)");
         }
 
-        Vector column = new Vector(rows.length);
-        for (int i = 0; i < rows.length; i++) {
+        Vector column = new Vector(getRowsCount());
+        for (int i = 0; i < getRowsCount(); i++) {
             column.setComponent(i, rows[i].getComponent(index));
         }
 
@@ -119,11 +119,11 @@ public class Matrix {
     }
 
     public void transpose() {
-        Vector[] transposedRows = new Vector[rows[0].getSize()];
+        Vector[] transposedRows = new Vector[getColumnsCount()];
 
-        for (int i = 0; i < rows[0].getSize(); i++) {
-            transposedRows[i] = new Vector(rows.length);
-            for (int j = 0; j < rows.length; j++) {
+        for (int i = 0; i < getColumnsCount(); i++) {
+            transposedRows[i] = new Vector(getRowsCount());
+            for (int j = 0; j < getRowsCount(); j++) {
                 transposedRows[i].setComponent(j, rows[j].getComponent(i));
             }
         }
@@ -138,10 +138,10 @@ public class Matrix {
     }
 
     private Matrix getSubmatrixForMinor(int index) {
-        Matrix submatrix = new Matrix(rows.length - 1, rows.length - 1);
+        Matrix submatrix = new Matrix(getRowsCount() - 1, getRowsCount() - 1);
 
-        for (int iOld = 1, iNew = 0; iOld < rows.length; ++iOld) {
-            for (int jOld = 0, jNew = 0; jOld < rows.length; ++jOld) {
+        for (int iOld = 1, iNew = 0; iOld < getRowsCount(); ++iOld) {
+            for (int jOld = 0, jNew = 0; jOld < getRowsCount(); ++jOld) {
                 if (jOld != index) {
                     submatrix.rows[iNew].setComponent(jNew, rows[iOld].getComponent(jOld));
                     ++jNew;
@@ -154,22 +154,22 @@ public class Matrix {
     }
 
     public double getDeterminant() {
-        if (rows.length != rows[0].getSize()) {
+        if (getRowsCount() != getColumnsCount()) {
             throw new ArithmeticException("Matrix must be square");
         }
 
-        if (rows.length == 1) {
+        if (getRowsCount() == 1) {
             return rows[0].getComponent(0);
         }
 
-        if (rows.length == 2) {
+        if (getRowsCount() == 2) {
             return rows[0].getComponent(0) * rows[1].getComponent(1)
                     - rows[0].getComponent(1) * rows[1].getComponent(0);
         }
 
         Matrix submatrix = getSubmatrixForMinor(0);
         double determinant = rows[0].getComponent(0) * submatrix.getDeterminant();
-        for (int i = 1; i < rows.length; i++) {
+        for (int i = 1; i < getRowsCount(); i++) {
             submatrix = getSubmatrixForMinor(i);
             determinant += Math.pow(-1, i) * rows[0].getComponent(i)
                     * submatrix.getDeterminant();
@@ -184,30 +184,30 @@ public class Matrix {
         }
 
         if (vector.getRowsCount() == 1) {
-            if (rows.length != vector.getColumnsCount()) {
+            if (getRowsCount() != vector.getColumnsCount()) {
                 throw new ArithmeticException("Rows count in original matrix must be equal to columns count vector matrix");
             }
 
-            Vector[] result = new Vector[rows.length];
-            for (int i = 0; i < rows.length; i++) {
-                result[i] = new Vector(rows.length);
+            Vector[] result = new Vector[getRowsCount()];
+            for (int i = 0; i < getRowsCount(); i++) {
+                result[i] = new Vector(getRowsCount());
 
-                for (int j = 0; j < rows.length; j++) {
+                for (int j = 0; j < getRowsCount(); j++) {
                     result[i].setComponent(j, rows[i].getComponent(0) * vector.rows[0].getComponent(j));
                 }
             }
 
             rows = result;
         } else if (vector.getColumnsCount() == 1) {
-            if (rows[0].getSize() != vector.getRowsCount()) {
+            if (getColumnsCount() != vector.getRowsCount()) {
                 throw new ArithmeticException("Columns count in original matrix must be equal to rows count vector matrix");
             }
 
-            Vector[] result = new Vector[rows.length];
-            for (int i = 0; i < rows.length; i++) {
+            Vector[] result = new Vector[getRowsCount()];
+            for (int i = 0; i < getRowsCount(); i++) {
                 result[i] = new Vector(1);
 
-                for (int j = 0; j < vector.rows.length; j++) {
+                for (int j = 0; j < vector.getRowsCount(); j++) {
                     result[i].setComponent(0,
                             result[i].getComponent(0) + rows[i].getComponent(j) * vector.rows[j].getComponent(0));
                 }
@@ -220,34 +220,34 @@ public class Matrix {
     }
 
     public void add(Matrix matrix) {
-        if (matrix.getRowsCount() != rows.length) {
+        if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
-        if (matrix.getColumnsCount() != rows[0].getSize()) {
+        if (matrix.getColumnsCount() != getColumnsCount()) {
             throw new ArithmeticException("Columns count must be equal");
         }
 
-        for (int i = 0; i < rows.length; i++) {
+        for (int i = 0; i < getRowsCount(); i++) {
             Vector currentRowInMatrix = matrix.getRow(i);
 
-            for (int j = 0; j < rows[0].getSize(); j++) {
+            for (int j = 0; j < getColumnsCount(); j++) {
                 rows[i].setComponent(j, rows[i].getComponent(j) + currentRowInMatrix.getComponent(j));
             }
         }
     }
 
     public void subtract(Matrix matrix) {
-        if (matrix.getRowsCount() != rows.length) {
+        if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
-        if (matrix.getColumnsCount() != rows[0].getSize()) {
+        if (matrix.getColumnsCount() != getColumnsCount()) {
             throw new ArithmeticException("Columns count must be equal");
         }
 
-        for (int i = 0; i < rows.length; i++) {
+        for (int i = 0; i < getRowsCount(); i++) {
             Vector currentRowInMatrix = matrix.getRow(i);
 
-            for (int j = 0; j < rows[0].getSize(); j++) {
+            for (int j = 0; j < getColumnsCount(); j++) {
                 rows[i].setComponent(j, rows[i].getComponent(j) - currentRowInMatrix.getComponent(j));
             }
         }
