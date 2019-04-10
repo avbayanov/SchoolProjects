@@ -1,21 +1,20 @@
 package me.bayanov.arrayListHome;
 
 import java.util.ArrayList;
-import java.util.function.Predicate;
 
 public class NumbersRemovers {
-    private static Predicate<Integer> isEven() {
-        return p -> p % 2 == 0;
-    }
-
     public static void removeEvenNumbers(ArrayList<Integer> numbers) {
-        numbers.removeIf(isEven());
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) % 2 == 0) {
+                numbers.remove(i);
+            }
+        }
     }
 
     public static ArrayList<Integer> removeDuplicates(ArrayList<Integer> numbers) {
         ArrayList<Integer> result = new ArrayList<>();
         for (Integer number : numbers) {
-            if (result.indexOf(number) == -1) {
+            if (!result.contains(number)) {
                 result.add(number);
             }
         }
