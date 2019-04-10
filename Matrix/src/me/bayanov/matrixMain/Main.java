@@ -5,7 +5,7 @@ import me.bayanov.vector.Vector;
 
 public class Main {
     public static void main(String[] args) {
-        double[][] square = {{57, 46, 18, 39}, {0, 3, 2, 1}, {25, 16, 44, 37}, {52, 6, 75, 8}};
+        double[][] square = {{57, 46, 18}, {0, 3, 2, 1}, {25, 16, 44, 37}, {52, 6, 75, 8}};
         Matrix matrix1 = new Matrix(square);
 
         Matrix matrix2 = new Matrix(matrix1);
@@ -17,7 +17,7 @@ public class Main {
         Vector[] vectors = new Vector[]{
                 new Vector(new double[]{1, 2, 3, 4}),
                 new Vector(new double[]{4, 5, 6, 7}),
-                new Vector(new double[]{8, 9, 0, 1}),
+                new Vector(new double[]{8, 9, 1}),
                 new Vector(new double[]{1, 2, 3, 4})};
         Matrix matrix3 = new Matrix(vectors);
 
