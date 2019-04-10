@@ -28,14 +28,7 @@ public class Main {
         System.out.println(m1 + " * " + m2 + " = " + Matrix.multiplyMatrixOnMatrix(m1, m2));
 
         Matrix vectorColumn = new Matrix(new double[][]{{1}, {2}, {3}});
-        Matrix vectorRow = new Matrix(new double[][]{{1, 2, 3}});
-        Matrix vectorColumnOriginal = new Matrix(vectorColumn);
-        Matrix m2Original = new Matrix(m2);
 
-        vectorColumn.multiplyOnVectorMatrix(vectorRow);
-        m2.multiplyOnVectorMatrix(vectorColumnOriginal);
-
-        System.out.println(vectorColumnOriginal + " * " + vectorRow + " = " + vectorColumn);
-        System.out.println(m2Original + " * " + vectorColumn + " = " + m2);
+        System.out.println(m2 + " * " + vectorColumn + " = " + m2.multiplyOnVectorColumn(vectorColumn));
     }
 }

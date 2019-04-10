@@ -192,45 +192,25 @@ public class Matrix {
         return determinant;
     }
 
-    public void multiplyOnVectorMatrix(Matrix vector) {
+    public Matrix multiplyOnVectorColumn(Matrix vector) {
         if (vector == null) {
             throw new NullPointerException("Vector Matrix must be not null");
         }
-
-        if (vector.getRowsCount() == 1) {
-            if (getRowsCount() != vector.getColumnsCount()) {
-                throw new ArithmeticException("Rows count in original matrix must be equal to columns count vector matrix");
-            }
-
-            Vector[] result = new Vector[getRowsCount()];
-            for (int i = 0; i < getRowsCount(); i++) {
-                result[i] = new Vector(getRowsCount());
-
-                for (int j = 0; j < getRowsCount(); j++) {
-                    result[i].setComponent(j, rows[i].getComponent(0) * vector.rows[0].getComponent(j));
-                }
-            }
-
-            rows = result;
-        } else if (vector.getColumnsCount() == 1) {
-            if (getColumnsCount() != vector.getRowsCount()) {
-                throw new ArithmeticException("Columns count in original matrix must be equal to rows count vector matrix");
-            }
-
-            Vector[] result = new Vector[getRowsCount()];
-            for (int i = 0; i < getRowsCount(); i++) {
-                result[i] = new Vector(1);
-
-                for (int j = 0; j < vector.getRowsCount(); j++) {
-                    result[i].setComponent(0,
-                            result[i].getComponent(0) + rows[i].getComponent(j) * vector.rows[j].getComponent(0));
-                }
-            }
-
-            rows = result;
-        } else {
-            throw new ArithmeticException("Vector Matrix must be vector (row count == 1 OR column count == 1)");
+        if (vector.getColumnsCount() != 1) {
+            throw new IllegalArgumentException("Vector must be vector-column");
         }
+        if (getColumnsCount() != vector.getRowsCount()) {
+            throw new ArithmeticException("Columns count in original matrix must be equal to rows count vector matrix");
+        }
+
+        double[][] result = new double[getRowsCount()][1];
+        for (int i = 0; i < getRowsCount(); i++) {
+            for (int j = 0; j < vector.getRowsCount(); j++) {
+                result[i][0] += rows[i].getComponent(j) * vector.rows[j].getComponent(0);
+            }
+        }
+
+        return new Matrix(result);
     }
 
     public void add(Matrix matrix) {
