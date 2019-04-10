@@ -2,8 +2,6 @@ package me.bayanov.matrix;
 
 import me.bayanov.vector.Vector;
 
-import java.util.Arrays;
-
 public class Matrix {
     private Vector[] rows;
 
