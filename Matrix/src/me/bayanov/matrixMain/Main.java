@@ -22,6 +22,7 @@ public class Main {
         Matrix matrix3 = new Matrix(vectors);
 
         System.out.println(matrix3 + " + " + matrix1 + " = " + Matrix.add(matrix3, matrix1));
+        System.out.println(matrix3 + " - " + matrix1 + " = " + Matrix.subtract(matrix3, matrix1));
 
         Matrix m1 = new Matrix(new double[][]{{-1, 1}, {2, 0}, {0, 3}});
         Matrix m2 = new Matrix(new double[][]{{3, 1, 2}, {0, -1, 4}});
