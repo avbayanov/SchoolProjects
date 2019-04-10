@@ -17,7 +17,7 @@ public class Main {
             System.out.println("File not found: " + exception);
         }
 
-        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 1, 2, 3, 3, 4, 5));
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 1, 2, 2, 3, 3, 4, 5));
         System.out.println("numbers = " + numbers);
 
         NumbersRemovers.removeEvenNumbers(numbers);
