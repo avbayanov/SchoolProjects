@@ -35,16 +35,25 @@ public class Matrix {
     }
 
     public Matrix(double[][] components) {
-        this(components.length, components[0].length);
+        if (components.length == 0) {
+            throw new IllegalArgumentException("Rows count must be > 0");
+        }
+
+        rows = new Vector[components.length];
+
+        int maxRowLength = components[0].length;
+        for (double[] row : components) {
+            if (row.length > maxRowLength) {
+                maxRowLength = row.length;
+            }
+        }
+
+        if (maxRowLength == 0) {
+            throw new IllegalArgumentException("Columns count must be > 0");
+        }
 
         for (int i = 0; i < components.length; i++) {
-            if (components[i].length > components[0].length) {
-                throw new IllegalArgumentException("Row size must be between 0 and first row size");
-            }
-
-            if (components[i].length != 0) {
-                setRow(i, new Vector(components[i]));
-            }
+            rows[i] = new Vector(maxRowLength, components[i]);
         }
     }
 
