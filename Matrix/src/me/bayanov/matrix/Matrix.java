@@ -115,19 +115,11 @@ public class Matrix {
         if (index < 0 || index >= getRowsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
-        if (row.getSize() > getColumnsCount()) {
-            throw new IllegalArgumentException("Row size must be between 1 and (columns count - 1)");
+        if (row.getSize() != getColumnsCount()) {
+            throw new IllegalArgumentException("Row size must be equal");
         }
 
-        if (row.getSize() < getColumnsCount()) {
-            rows[index] = new Vector(getColumnsCount());
-
-            for (int i = 0; i < row.getSize(); i++) {
-                rows[index].setComponent(i, row.getComponent(i));
-            }
-        } else {
-            rows[index] = new Vector(row);
-        }
+        rows[index] = new Vector(row);
     }
 
     public Vector getColumn(int index) {
