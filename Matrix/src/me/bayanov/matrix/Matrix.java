@@ -8,10 +8,10 @@ public class Matrix {
     private Vector[] rows;
 
     public Matrix(int rowsCount, int columnsCount) {
-        if (rowsCount == 0) {
+        if (rowsCount <= 0) {
             throw new IllegalArgumentException("Rows count must be > 0");
         }
-        if (columnsCount == 0) {
+        if (columnsCount <= 0) {
             throw new IllegalArgumentException("Columns count must be > 0");
         }
 
