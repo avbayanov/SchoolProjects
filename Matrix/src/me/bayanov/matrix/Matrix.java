@@ -253,6 +253,13 @@ public class Matrix {
             throw new NullPointerException("Second Matrix must be not null");
         }
 
+        if (matrix1.getRowsCount() != matrix2.getRowsCount()) {
+            throw new ArithmeticException("Rows count must be equal");
+        }
+        if (matrix1.getColumnsCount() != matrix2.getColumnsCount()) {
+            throw new ArithmeticException("Columns count must be equal");
+        }
+
         Matrix result = new Matrix(matrix1);
         result.add(matrix2);
 
@@ -265,6 +272,13 @@ public class Matrix {
         }
         if (matrix2 == null) {
             throw new NullPointerException("Second Matrix must be not null");
+        }
+
+        if (matrix1.getRowsCount() != matrix2.getRowsCount()) {
+            throw new ArithmeticException("Rows count must be equal");
+        }
+        if (matrix1.getColumnsCount() != matrix2.getColumnsCount()) {
+            throw new ArithmeticException("Columns count must be equal");
         }
 
         Matrix result = new Matrix(matrix1);
