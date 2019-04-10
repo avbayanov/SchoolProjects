@@ -237,6 +237,9 @@ public class Matrix {
     }
 
     public void add(Matrix matrix) {
+        if (matrix == null) {
+            throw new NullPointerException("Matrix must be not null");
+        }
         if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
@@ -254,6 +257,9 @@ public class Matrix {
     }
 
     public void subtract(Matrix matrix) {
+        if (matrix == null) {
+            throw new NullPointerException("Matrix must be not null");
+        }
         if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
