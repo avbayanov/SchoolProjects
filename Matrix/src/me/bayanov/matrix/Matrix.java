@@ -108,6 +108,7 @@ public class Matrix {
         if (index < 0 || index >= getRowsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
+
         return new Vector(rows[index]);
     }
 
@@ -115,6 +116,7 @@ public class Matrix {
         if (index < 0 || index >= getRowsCount()) {
             throw new IndexOutOfBoundsException("Index must be between 0 and (rows count - 1)");
         }
+
         if (row.getSize() != getColumnsCount()) {
             throw new IllegalArgumentException("Row size must be equal");
         }
@@ -196,6 +198,7 @@ public class Matrix {
         if (vector == null) {
             throw new NullPointerException("Vector Matrix must be not null");
         }
+
         if (vector.getColumnsCount() != 1) {
             throw new IllegalArgumentException("Vector must be vector-column");
         }
@@ -217,6 +220,7 @@ public class Matrix {
         if (matrix == null) {
             throw new NullPointerException("Matrix must be not null");
         }
+
         if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
@@ -233,6 +237,7 @@ public class Matrix {
         if (matrix == null) {
             throw new NullPointerException("Matrix must be not null");
         }
+
         if (matrix.getRowsCount() != getRowsCount()) {
             throw new ArithmeticException("Rows count must be equal");
         }
