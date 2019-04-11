@@ -192,26 +192,23 @@ public class Matrix {
         return determinant;
     }
 
-    public Matrix multiplyOnVectorColumn(Matrix vector) {
+    public Vector multiplyOnVectorColumn(Vector vector) {
         if (vector == null) {
-            throw new NullPointerException("Vector Matrix must be not null");
+            throw new NullPointerException("Vector must be not null");
         }
 
-        if (vector.getColumnsCount() != 1) {
-            throw new IllegalArgumentException("Vector must be vector-column");
-        }
-        if (getColumnsCount() != vector.getRowsCount()) {
+        if (getColumnsCount() != vector.getSize()) {
             throw new ArithmeticException("Columns count in original matrix must be equal to rows count vector matrix");
         }
 
-        double[][] result = new double[getRowsCount()][1];
+        double[] result = new double[getRowsCount()];
         for (int i = 0; i < getRowsCount(); i++) {
-            for (int j = 0; j < vector.getRowsCount(); j++) {
-                result[i][0] += rows[i].getComponent(j) * vector.rows[j].getComponent(0);
+            for (int j = 0; j < vector.getSize(); j++) {
+                result[i] += rows[i].getComponent(j) * vector.getComponent(j);
             }
         }
 
-        return new Matrix(result);
+        return new Vector(result);
     }
 
     public void add(Matrix matrix) {

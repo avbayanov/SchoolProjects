@@ -28,7 +28,7 @@ public class Main {
         Matrix m2 = new Matrix(new double[][]{{3, 1, 2}, {0, -1, 4}});
         System.out.println(m1 + " * " + m2 + " = " + Matrix.multiplyMatrixOnMatrix(m1, m2));
 
-        Matrix vectorColumn = new Matrix(new double[][]{{1}, {2}, {3}});
+        Vector vectorColumn = new Vector(new double[]{12, -8, 4});
 
         System.out.println(m2 + " * " + vectorColumn + " = " + m2.multiplyOnVectorColumn(vectorColumn));
     }
