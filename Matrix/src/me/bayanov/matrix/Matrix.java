@@ -169,7 +169,7 @@ public class Matrix {
 
     public double getDeterminant() {
         if (getRowsCount() != getColumnsCount()) {
-            throw new ArithmeticException("Matrix must be square");
+            throw new IllegalArgumentException("Matrix must be square");
         }
 
         if (getRowsCount() == 1) {
@@ -198,7 +198,7 @@ public class Matrix {
         }
 
         if (getColumnsCount() != vector.getSize()) {
-            throw new ArithmeticException("Columns count in original matrix must be equal to rows count vector matrix");
+            throw new IllegalArgumentException("Columns count in original matrix must be equal to rows count vector matrix");
         }
 
         double[] result = new double[getRowsCount()];
@@ -217,10 +217,10 @@ public class Matrix {
         }
 
         if (matrix.getRowsCount() != getRowsCount()) {
-            throw new ArithmeticException("Rows count must be equal");
+            throw new IllegalArgumentException("Rows count must be equal");
         }
         if (matrix.getColumnsCount() != getColumnsCount()) {
-            throw new ArithmeticException("Columns count must be equal");
+            throw new IllegalArgumentException("Columns count must be equal");
         }
 
         for (int i = 0; i < getRowsCount(); i++) {
@@ -234,10 +234,10 @@ public class Matrix {
         }
 
         if (matrix.getRowsCount() != getRowsCount()) {
-            throw new ArithmeticException("Rows count must be equal");
+            throw new IllegalArgumentException("Rows count must be equal");
         }
         if (matrix.getColumnsCount() != getColumnsCount()) {
-            throw new ArithmeticException("Columns count must be equal");
+            throw new IllegalArgumentException("Columns count must be equal");
         }
 
         for (int i = 0; i < getRowsCount(); i++) {
@@ -254,10 +254,10 @@ public class Matrix {
         }
 
         if (matrix1.getRowsCount() != matrix2.getRowsCount()) {
-            throw new ArithmeticException("Rows count must be equal");
+            throw new IllegalArgumentException("Rows count must be equal");
         }
         if (matrix1.getColumnsCount() != matrix2.getColumnsCount()) {
-            throw new ArithmeticException("Columns count must be equal");
+            throw new IllegalArgumentException("Columns count must be equal");
         }
 
         Matrix result = new Matrix(matrix1);
@@ -275,10 +275,10 @@ public class Matrix {
         }
 
         if (matrix1.getRowsCount() != matrix2.getRowsCount()) {
-            throw new ArithmeticException("Rows count must be equal");
+            throw new IllegalArgumentException("Rows count must be equal");
         }
         if (matrix1.getColumnsCount() != matrix2.getColumnsCount()) {
-            throw new ArithmeticException("Columns count must be equal");
+            throw new IllegalArgumentException("Columns count must be equal");
         }
 
         Matrix result = new Matrix(matrix1);
