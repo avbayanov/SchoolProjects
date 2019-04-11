@@ -22,7 +22,7 @@ public class List<T> {
         return head.getData();
     }
 
-    public T get(int index) {
+    private Node<T> getNodeByIndex(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index must be between 0 and list size (" + size + ")");
         }
@@ -32,7 +32,15 @@ public class List<T> {
             current = current.getNext();
         }
 
-        return current.getData();
+        return current;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index must be between 0 and list size (" + size + ")");
+        }
+
+        return getNodeByIndex(index).getData();
     }
 
     public T set(int index, T data) {
@@ -43,10 +51,7 @@ public class List<T> {
         T dataBeforeChange;
 
         if (index != 0) {
-            Node<T> previous = head;
-            for (int i = 0; i < index - 1; i++) {
-                previous = previous.getNext();
-            }
+            Node<T> previous = getNodeByIndex(index - 1);
 
             Node<T> current = previous.getNext();
             dataBeforeChange = current.getData();
@@ -72,10 +77,7 @@ public class List<T> {
         T dataBeforeRemove;
 
         if (index != 0) {
-            Node<T> previous = head;
-            for (int i = 0; i < index - 1; i++) {
-                previous = previous.getNext();
-            }
+            Node<T> previous = getNodeByIndex(index - 1);
 
             Node<T> current = previous.getNext();
             dataBeforeRemove = current.getData();
@@ -107,10 +109,7 @@ public class List<T> {
         }
 
         if (index != 0) {
-            Node<T> previous = head;
-            for (int i = 0; i < index - 1; i++) {
-                previous = previous.getNext();
-            }
+            Node<T> previous = getNodeByIndex(index - 1);
 
             Node<T> current = previous.getNext();
 
