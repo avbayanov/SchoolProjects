@@ -12,7 +12,7 @@ public class Main {
 
         System.out.println(numbers.set(0, 5));
         System.out.println(numbers.remove(3));
-        numbers.insertTo(numbers.getSize() - 1, 500);
+        numbers.insertTo(numbers.getSize(), 500);
         System.out.println(numbers.removeByData(5));
         System.out.println(numbers.removeFirst());
 
