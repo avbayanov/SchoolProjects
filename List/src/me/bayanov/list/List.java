@@ -1,6 +1,7 @@
 package me.bayanov.list;
 
 import java.lang.reflect.Array;
+import java.util.NoSuchElementException;
 
 public class List<T> {
     private Node<T> head;
@@ -14,6 +15,10 @@ public class List<T> {
     }
 
     public T getFirst() {
+        if (size == 0) {
+            throw new NoSuchElementException("No first element. List does not contains anything.");
+        }
+
         return head.getData();
     }
 
@@ -138,7 +143,7 @@ public class List<T> {
 
     public T removeFirst() {
         if (size == 0) {
-            throw new IndexOutOfBoundsException("Size is 0. No first element");
+            throw new NoSuchElementException("No first element. List does not contains anything.");
         }
 
         T data = head.getData();
