@@ -104,7 +104,7 @@ public class List<T> {
     }
 
     public void insertTo(int index, T data) {
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException("Index must be between 0 and list size (" + size + ")");
         }
 
