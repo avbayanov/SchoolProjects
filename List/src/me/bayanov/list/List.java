@@ -140,22 +140,19 @@ public class List<T> {
     }
 
     public void reverse() {
-        @SuppressWarnings("unchecked")
-        Node<T>[] nodes = (Node<T>[]) Array.newInstance(head.getClass(), getSize());
+        Node<T> current = head;
 
-        int i = 0;
-        for (Node<T> current = head; current != null; current = current.getNext()) {
-            nodes[i] = current;
-            i++;
+        for (Node<T> next, previous = null; ; previous = current, current = next) {
+            next = current.getNext();
+
+            current.setNext(previous);
+
+            if (next == null) {
+                break;
+            }
         }
 
-        for (int j = getSize() - 1; j > 0; j--) {
-            nodes[j].setNext(nodes[j - 1]);
-        }
-
-        nodes[0].setNext(null);
-
-        head = nodes[getSize() - 1];
+        head = current;
     }
 
     public List<T> getCopy() {
