@@ -48,23 +48,10 @@ public class List<T> {
             throw new IndexOutOfBoundsException("Index must be between 0 and list size (" + size + ")");
         }
 
-        T dataBeforeChange;
+        Node<T> current = getNodeByIndex(index);
+        T dataBeforeChange = current.getData();
 
-        if (index != 0) {
-            Node<T> previous = getNodeByIndex(index - 1);
-
-            Node<T> current = previous.getNext();
-            dataBeforeChange = current.getData();
-
-            Node<T> next = current.getNext();
-
-            previous.setNext(new Node<>(data, next));
-        } else {
-            dataBeforeChange = head.getData();
-            Node<T> next = head.getNext();
-
-            head = new Node<>(data, next);
-        }
+        current.setData(data);
 
         return dataBeforeChange;
     }
