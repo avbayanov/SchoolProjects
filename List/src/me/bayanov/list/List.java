@@ -16,7 +16,7 @@ public class List<T> {
 
     public T getFirst() {
         if (size == 0) {
-            throw new NoSuchElementException("No first element. List does not contain anything.");
+            throw new NoSuchElementException("No first element. List does not contain anything");
         }
 
         return head.getData();
@@ -142,7 +142,7 @@ public class List<T> {
 
     public T removeFirst() {
         if (size == 0) {
-            throw new NoSuchElementException("No first element. List does not contain anything.");
+            throw new NoSuchElementException("No first element. List does not contain anything");
         }
 
         T data = head.getData();
