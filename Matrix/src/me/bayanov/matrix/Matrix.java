@@ -295,8 +295,8 @@ public class Matrix {
             throw new NullPointerException("Second Matrix must be not null");
         }
 
-        if (matrix1.getRowsCount() != matrix2.getColumnsCount()) {
-            throw new ArithmeticException("Rows count of first matrix must be equal to columns count of second matrix");
+        if (matrix1.getColumnsCount() != matrix2.getRowsCount()) {
+            throw new IllegalArgumentException("Rows count of first matrix must be equal to columns count of second matrix");
         }
 
         double[][] result = new double[matrix1.getRowsCount()][matrix2.getColumnsCount()];
