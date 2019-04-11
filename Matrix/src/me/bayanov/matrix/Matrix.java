@@ -299,8 +299,7 @@ public class Matrix {
             throw new ArithmeticException("Rows count of first matrix must be equal to columns count of second matrix");
         }
 
-        double[][] result = new double[Math.max(matrix1.getRowsCount(), matrix2.getRowsCount())]
-                [Math.max(matrix1.getColumnsCount(), matrix2.getColumnsCount())];
+        double[][] result = new double[matrix1.getRowsCount()][matrix2.getColumnsCount()];
 
         for (int i = 0; i < result.length; i++) {
             for (int j = 0; j < result[0].length; j++) {
