@@ -28,7 +28,7 @@ public class Matrix {
         rows = new Vector[matrix.getRowsCount()];
 
         for (int i = 0; i < matrix.getRowsCount(); i++) {
-            rows[i] = new Vector(matrix.getRow(i));
+            rows[i] = matrix.getRow(i);
         }
     }
 
@@ -224,7 +224,7 @@ public class Matrix {
         }
 
         for (int i = 0; i < getRowsCount(); i++) {
-            rows[i].add(matrix.getRow(i));
+            rows[i].add(matrix.rows[i]);
         }
     }
 
@@ -241,7 +241,7 @@ public class Matrix {
         }
 
         for (int i = 0; i < getRowsCount(); i++) {
-            rows[i].subtract(matrix.getRow(i));
+            rows[i].subtract(matrix.rows[i]);
         }
     }
 
