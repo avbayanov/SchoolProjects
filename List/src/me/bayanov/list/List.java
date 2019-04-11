@@ -157,20 +157,17 @@ public class List<T> {
 
     public List<T> getCopy() {
         List<T> result = new List<>();
+        result.size = size;
 
-        @SuppressWarnings("unchecked")
-        Node<T>[] nodes = (Node<T>[]) Array.newInstance(head.getClass(), getSize());
+        result.head = new Node<>(head.getData(), null);
 
-        int i = 0;
-        for (Node<T> current = head; current != null; current = current.getNext()) {
-            nodes[i] = current;
-            i++;
-        }
+        for (Node<T> current = head.getNext(), next, resultCurrent, resultPrevious = result.head; current != null;
+             current = next, resultPrevious = resultCurrent) {
 
-        result.insertBeforeAll(nodes[getSize() - 1].getData());
+            next = current.getNext();
 
-        for (int j = getSize() - 2; j >= 0; j--) {
-            result.insertBeforeAll(nodes[j].getData());
+            resultCurrent = new Node<>(current.getData(), null);
+            resultPrevious.setNext(resultCurrent);
         }
 
         return result;
