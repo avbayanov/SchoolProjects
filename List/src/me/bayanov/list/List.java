@@ -125,7 +125,7 @@ public class List<T> {
         for (Node<T> current = head, previous = null; current != null;
              previous = current, current = current.getNext()) {
 
-            if (data.equals(current.getData())) {
+            if (current.getData().equals(data)) {
                 if (previous != null) {
                     previous.setNext(current.getNext());
                 } else {
