@@ -112,7 +112,7 @@ public class List<T> {
         for (Node<T> current = head, previous = null; current != null;
              previous = current, current = current.getNext()) {
 
-            if (current.getData().equals(data)) {
+            if (current.getData() == data || current.getData().equals(data)) {
                 if (previous != null) {
                     previous.setNext(current.getNext());
                 } else {
