@@ -1,6 +1,5 @@
 package me.bayanov.list;
 
-import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
