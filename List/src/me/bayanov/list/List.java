@@ -2,6 +2,7 @@ package me.bayanov.list;
 
 import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public class List<T> {
     private Node<T> head;
@@ -112,7 +113,7 @@ public class List<T> {
         for (Node<T> current = head, previous = null; current != null;
              previous = current, current = current.getNext()) {
 
-            if (current.getData() == data || current.getData().equals(data)) {
+            if (Objects.equals(current.getData(), data)) {
                 if (previous != null) {
                     previous.setNext(current.getNext());
                 } else {
