@@ -159,6 +159,10 @@ public class List<T> {
         List<T> result = new List<>();
         result.size = size;
 
+        if (size == 0) {
+            return result;
+        }
+
         result.head = new Node<>(head.getData(), null);
 
         for (Node<T> current = head.getNext(), next, resultCurrent, resultPrevious = result.head; current != null;
