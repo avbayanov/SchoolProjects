@@ -166,9 +166,9 @@ public class ArrayList<E> implements List<E> {
 
             System.arraycopy(data, index, data, index + c.size(), size - index);
 
-            int i = 0;
+            int i = index;
             for (E object : c) {
-                data[index + i] = object;
+                data[i] = object;
                 i++;
             }
 
