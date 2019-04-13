@@ -189,7 +189,7 @@ public class ArrayList<E> implements List<E> {
             remove(object);
         }
 
-        return modCount > modCountBefore;
+        return modCount != modCountBefore;
     }
 
     @Override
@@ -203,7 +203,7 @@ public class ArrayList<E> implements List<E> {
             }
         }
 
-        return modCount > modCountBefore;
+        return modCount != modCountBefore;
     }
 
     @Override
