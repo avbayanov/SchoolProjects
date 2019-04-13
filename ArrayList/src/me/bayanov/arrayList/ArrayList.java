@@ -23,7 +23,6 @@ public class ArrayList<E> implements List<E> {
 
     private void expand(int length) {
         data = Arrays.copyOf(data, length);
-        modCount++;
     }
 
     public void ensureCapacity(int capacity) {
@@ -39,9 +38,7 @@ public class ArrayList<E> implements List<E> {
     public void trimToSize() {
         if (data.length != size) {
             data = Arrays.copyOf(data, size);
-            modCount++;
         }
-
     }
 
     @Override
