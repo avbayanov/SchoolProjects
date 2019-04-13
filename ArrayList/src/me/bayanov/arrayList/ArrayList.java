@@ -112,7 +112,7 @@ public class ArrayList<E> implements List<E> {
 
     @Override
     public boolean add(E e) {
-        if (size + 1 >= data.length) {
+        if (size + 1 > data.length) {
             expand(data.length * 2 + 1);
         }
         data[size] = e;
@@ -240,7 +240,7 @@ public class ArrayList<E> implements List<E> {
             throw new IndexOutOfBoundsException("Index must be between 0 and size");
         }
 
-        if (size + 1 >= data.length) {
+        if (size + 1 > data.length) {
             expand(data.length * 2 + 1);
         }
 
