@@ -186,7 +186,12 @@ public class ArrayList<E> implements List<E> {
         int modCountBefore = modCount;
 
         for (Object object : c) {
-            remove(object);
+            for (int i = 0; i < size; i++) {
+                if (Objects.equals(object, data[i])) {
+                    remove(i);
+                    i--;
+                }
+            }
         }
 
         return modCount != modCountBefore;
