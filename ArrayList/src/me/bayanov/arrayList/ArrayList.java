@@ -8,6 +8,7 @@ public class ArrayList<E> implements List<E> {
     private int modCount;
 
     public ArrayList() {
+        //noinspection unchecked
         data = (E[]) new Object[10];
     }
 
@@ -16,6 +17,7 @@ public class ArrayList<E> implements List<E> {
             throw new IllegalArgumentException("Capacity must be >= 0");
         }
 
+        //noinspection unchecked
         data = (E[]) new Object[capacity];
     }
 
@@ -97,6 +99,7 @@ public class ArrayList<E> implements List<E> {
         }
 
         if (a.length >= size) {
+            //noinspection SuspiciousSystemArraycopy
             System.arraycopy(data, 0, a, 0, size);
 
             if (a.length > size) {
@@ -105,6 +108,7 @@ public class ArrayList<E> implements List<E> {
 
             return a;
         } else {
+            //noinspection unchecked
             return (T[]) Arrays.copyOf(data, size, a.getClass());
         }
     }
