@@ -230,7 +230,6 @@ public class ArrayList<E> implements List<E> {
         E beforeSet = data[index];
         data[index] = element;
 
-        modCount++;
         return beforeSet;
     }
 
