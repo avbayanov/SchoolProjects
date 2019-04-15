@@ -20,7 +20,7 @@ public class Main {
 
         // Список уникальных имён
         List<String> uniqueNames = persons.stream()
-                .map(p -> p.getName())
+                .map(Person::getName)
                 .distinct()
                 .collect(toList());
 
@@ -34,13 +34,13 @@ public class Main {
                 .filter(p -> p.getAge() < 18)
                 .collect(toList());
         OptionalDouble averageAgeOfPersonsUnder18 = personsUnder18.stream()
-                .mapToInt(p -> p.getAge())
+                .mapToInt(Person::getAge)
                 .average();
         averageAgeOfPersonsUnder18.ifPresent((p) -> System.out.println("Средний возраст людей младше 18: " + p));
 
         // При помощи группировки получить Map, в котором ключи – имена, а значения – средний возраст
         Map<String, Double> averageAgeByName = persons.stream()
-                .collect(Collectors.groupingBy(p -> p.getName(), averagingInt(p -> p.getAge())));
+                .collect(Collectors.groupingBy(Person::getName, averagingInt(Person::getAge)));
 
         // Получить людей, возраст которых от 20 до 45, вывести в консоль их имена в порядке убывания возраста
         List<Person> sortedPersonsFrom20To45 = persons.stream()
@@ -48,7 +48,7 @@ public class Main {
                 .sorted((p1, p2) -> p2.getAge() - p1.getAge())
                 .collect(toList());
         sortedPersonsFrom20To45.stream()
-                .map(p -> p.getName())
+                .map(Person::getName)
                 .forEach(System.out::println);
 
         // Вывести n корней чисел
