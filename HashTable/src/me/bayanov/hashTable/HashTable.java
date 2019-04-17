@@ -22,8 +22,8 @@ public class HashTable<K, V> implements Collection {
             return null;
         }
 
-        for (ListIterator i = data[address].listIterator(); i.hasNext(); ) {
-            Pair<K, V> pair = (Pair<K, V>) i.next();
+        for (Object object : data[address]) {
+            Pair<K, V> pair = (Pair<K, V>) object;
             if (pair.getKey() == key) {
                 return pair.getValue();
             }
@@ -257,7 +257,7 @@ public class HashTable<K, V> implements Collection {
         for (int i = 0; i < data.length; i++) {
             if (data[i] != null) {
 
-                for (ListIterator iterator = data[i].listIterator(); iterator.hasNext();) {
+                for (ListIterator iterator = data[i].listIterator(); iterator.hasNext(); ) {
                     Pair<K, V> currentPair = (Pair<K, V>) iterator.next();
                     if (!c.contains(currentPair.getKey())) {
                         iterator.remove();
