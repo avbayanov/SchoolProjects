@@ -19,6 +19,9 @@ public class HashTable<E> implements Collection<E> {
     }
 
     private int getAddress(E element) {
+        if (element == null) {
+            return 0;
+        }
         return Math.abs(element.hashCode() % data.length);
     }
 
@@ -55,7 +58,7 @@ public class HashTable<E> implements Collection<E> {
     }
 
     private class HashTableIterator implements Iterator<E> {
-        private int currentAddress;
+        private int currentAddress = -1;
         private ListIterator currentListIterator;
         private int modCountBefore = modCount;
 
@@ -153,10 +156,6 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean add(E e) {
-        if (e == null) {
-            throw new NullPointerException("Pair must be not null");
-        }
-
         int address = getAddress(e);
 
         if (data[address] == null) {
