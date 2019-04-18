@@ -172,6 +172,10 @@ public class HashTable<E> implements Collection<E> {
         if (result) {
             size--;
             modCount++;
+
+            if (data[address].isEmpty()) {
+                data[address] = null;
+            }
         }
 
         return result;

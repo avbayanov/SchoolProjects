@@ -13,7 +13,7 @@ public class Main {
         hashTable.add(4);
 
         hashTable.remove(1);
-        System.out.println(hashTable.containsAll(Arrays.asList(1, 3)));
+        System.out.println(hashTable.containsAll(Arrays.asList(2, 3)));
         hashTable.addAll(Arrays.asList(4, 5));
         hashTable.removeAll(Arrays.asList(5, 6));
 //        hashTable.retainAll(Arrays.asList(1, 2, 3));
