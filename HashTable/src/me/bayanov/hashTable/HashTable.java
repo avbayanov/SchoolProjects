@@ -43,11 +43,7 @@ public class HashTable<E> implements Collection<E> {
             return false;
         }
 
-        if (data[address].contains(o)) {
-            return true;
-        }
-
-        return false;
+        return data[address].contains(o);
     }
 
     private class HashTableIterator implements Iterator<E> {
