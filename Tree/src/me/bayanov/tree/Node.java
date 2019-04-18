@@ -5,12 +5,6 @@ class Node<E> {
     private Node<E> right;
     private E data;
 
-    Node(Node<E> left, Node<E> right, E data) {
-        this.left = left;
-        this.right = right;
-        this.data = data;
-    }
-
     Node(E data) {
         this.data = data;
     }
