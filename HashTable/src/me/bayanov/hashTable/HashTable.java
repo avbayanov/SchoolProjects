@@ -54,7 +54,19 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean contains(Object o) {
-        return getListIteratorForElement((E) o) != null;
+        int address = getAddress((E) o);
+
+        if (data[address] == null) {
+            return false;
+        }
+
+        for (Object object : data[address]) {
+            if (Objects.equals(o, object)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private class HashTableIterator implements Iterator<E> {
