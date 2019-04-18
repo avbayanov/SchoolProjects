@@ -124,11 +124,9 @@ public class HashTable<E> implements Collection<E> {
 
         if (a.length >= size) {
             int resultCount = 0;
-            for (List list : data) {
-                if (list != null) {
-                    System.arraycopy(list.toArray(), 0, a, resultCount, list.size());
-                    resultCount += list.size();
-                }
+            for (E element : this) {
+                a[resultCount] = (T) element;
+                resultCount++;
             }
 
             if (a.length > size) {
@@ -138,7 +136,7 @@ public class HashTable<E> implements Collection<E> {
             return a;
         }
 
-        return (T[]) toArray();
+        return (T[]) Arrays.copyOf(toArray(), size, a.getClass()) ;
     }
 
     @Override
