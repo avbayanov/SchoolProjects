@@ -206,8 +206,7 @@ public class HashTable<E> implements Collection<E> {
         int modCountBefore = modCount;
 
         for (Object object : c) {
-            while (contains(object)) {
-                remove(object);
+            for (; remove(object);) {
             }
         }
 
