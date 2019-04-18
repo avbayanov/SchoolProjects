@@ -12,6 +12,9 @@ public class HashTable<E> implements Collection<E> {
     }
 
     public HashTable(int length) {
+        if (length <= 0) {
+            throw new IllegalArgumentException("Length must be > 0");
+        }
         data = new LinkedList[length];
     }
 
