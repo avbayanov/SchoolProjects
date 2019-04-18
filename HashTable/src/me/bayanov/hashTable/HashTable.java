@@ -2,7 +2,7 @@ package me.bayanov.hashTable;
 
 import java.util.*;
 
-public class HashTable<K, V> implements Collection {
+public class HashTable<E> implements Collection<E> {
     private List[] data;
     private int size;
     private int modCount;
@@ -15,37 +15,20 @@ public class HashTable<K, V> implements Collection {
         data = new LinkedList[length];
     }
 
-    public V get(K key) {
-        int address = getAddress(key);
-
-        if (data[address] == null) {
-            return null;
-        }
-
-        for (Object object : data[address]) {
-            Pair<K, V> pair = (Pair<K, V>) object;
-            if (pair.getKey() == key) {
-                return pair.getValue();
-            }
-        }
-
-        return null;
+    private int getAddress(E element) {
+        return Math.abs(element.hashCode() % data.length);
     }
 
-    private int getAddress(K key) {
-        return Math.abs(key.hashCode() % data.length);
-    }
-
-    private ListIterator getListIteratorByKey(K key) {
-        int address = getAddress(key);
+    private ListIterator getListIteratorForElement(E element) {
+        int address = getAddress(element);
 
         if (data[address] == null) {
             return null;
         }
 
         for (ListIterator i = data[address].listIterator(); i.hasNext(); ) {
-            Pair<K, V> pair = (Pair<K, V>) i.next();
-            if (pair.getKey() == key) {
+            Object currentElement = i.next();
+            if (Objects.equals(element, currentElement)) {
                 return i;
             }
         }
@@ -65,10 +48,10 @@ public class HashTable<K, V> implements Collection {
 
     @Override
     public boolean contains(Object o) {
-        return getListIteratorByKey((K) o) != null;
+        return getListIteratorForElement((E) o) != null;
     }
 
-    private class HashTableIterator implements Iterator {
+    private class HashTableIterator implements Iterator<E> {
         private int currentAddress;
         private ListIterator currentListIterator;
         private int modCountBefore = modCount;
@@ -101,7 +84,7 @@ public class HashTable<K, V> implements Collection {
         }
 
         @Override
-        public Object next() {
+        public E next() {
             if (modCountBefore != modCount) {
                 throw new ConcurrentModificationException("HashTable was modified");
             }
@@ -111,16 +94,16 @@ public class HashTable<K, V> implements Collection {
             }
 
             if (currentListIterator.hasNext()) {
-                return currentListIterator.next();
+                return (E) currentListIterator.next();
             }
 
             nextListIterator();
-            return currentListIterator.next();
+            return (E) currentListIterator.next();
         }
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
         return new HashTableIterator();
     }
 
@@ -131,18 +114,17 @@ public class HashTable<K, V> implements Collection {
         int resultCount = 0;
         for (List list : data) {
             if (list != null) {
-                for (Object pair : list) {
-                    result[resultCount] = new Pair<>((Pair<K, V>) pair);
-                    resultCount++;
-                }
+                System.arraycopy(list.toArray(), 0, result, resultCount, list.size());
+                resultCount += list.size();
             }
         }
 
         return result;
     }
 
+
     @Override
-    public Object[] toArray(Object[] a) {
+    public <T> T[] toArray(T[] a) {
         if (a == null) {
             throw new NullPointerException("Array must be not null");
         }
@@ -151,10 +133,8 @@ public class HashTable<K, V> implements Collection {
             int resultCount = 0;
             for (List list : data) {
                 if (list != null) {
-                    for (Object pair : list) {
-                        a[resultCount] = new Pair<>((Pair<K, V>) pair);
-                        resultCount++;
-                    }
+                    System.arraycopy(list.toArray(), 0, a, resultCount, list.size());
+                    resultCount += list.size();
                 }
             }
 
@@ -165,31 +145,22 @@ public class HashTable<K, V> implements Collection {
             return a;
         }
 
-        return toArray();
+        return (T[]) toArray();
     }
 
     @Override
-    public boolean add(Object o) {
-        if (o == null) {
+    public boolean add(E e) {
+        if (e == null) {
             throw new NullPointerException("Pair must be not null");
         }
 
-        Pair<K, V> pair = (Pair<K, V>) o;
-        int address = getAddress(pair.getKey());
+        int address = getAddress(e);
 
         if (data[address] == null) {
-            data[address] = new LinkedList<Pair<K, V>>();
-        } else {
-            ListIterator existedPair = getListIteratorByKey(pair.getKey());
-            if (existedPair != null) {
-                existedPair.set(pair);
-
-                modCount++;
-                return true;
-            }
+            data[address] = new LinkedList<E>();
         }
 
-        data[address].add(pair);
+        data[address].add(e);
 
         size++;
         modCount++;
@@ -199,13 +170,13 @@ public class HashTable<K, V> implements Collection {
 
     @Override
     public boolean remove(Object o) {
-        ListIterator existedPair = getListIteratorByKey((K) o);
+        ListIterator existedElement = getListIteratorForElement((E) o);
 
-        if (existedPair != null) {
-            existedPair.remove();
+        if (existedElement != null) {
+            existedElement.remove();
 
-            if (!existedPair.hasNext()) {
-                data[getAddress((K) o)] = null;
+            if (!existedElement.hasNext()) {
+                data[getAddress((E) o)] = null;
             }
 
             size--;
@@ -231,7 +202,7 @@ public class HashTable<K, V> implements Collection {
     @Override
     public boolean addAll(Collection c) {
         for (Object object : c) {
-            add(object);
+            add((E) object);
         }
 
         return true;
@@ -258,8 +229,8 @@ public class HashTable<K, V> implements Collection {
             if (data[i] != null) {
 
                 for (ListIterator iterator = data[i].listIterator(); iterator.hasNext(); ) {
-                    Pair<K, V> currentPair = (Pair<K, V>) iterator.next();
-                    if (!c.contains(currentPair.getKey())) {
+                    E currentElement = (E) iterator.next();
+                    if (!c.contains(currentElement)) {
                         iterator.remove();
 
                         if (!iterator.hasNext()) {
