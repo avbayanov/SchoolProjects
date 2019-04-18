@@ -107,11 +107,9 @@ public class HashTable<E> implements Collection<E> {
         Object[] result = new Object[size];
 
         int resultCount = 0;
-        for (List list : data) {
-            if (list != null) {
-                System.arraycopy(list.toArray(), 0, result, resultCount, list.size());
-                resultCount += list.size();
-            }
+        for (E element : this) {
+            result[resultCount] = element;
+            resultCount++;
         }
 
         return result;
