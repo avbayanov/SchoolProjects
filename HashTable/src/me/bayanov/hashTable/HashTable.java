@@ -25,23 +25,6 @@ public class HashTable<E> implements Collection<E> {
         return Math.abs(element.hashCode() % data.length);
     }
 
-    private ListIterator getListIteratorForElement(E element) {
-        int address = getAddress(element);
-
-        if (data[address] == null) {
-            return null;
-        }
-
-        for (ListIterator i = data[address].listIterator(); i.hasNext(); ) {
-            Object currentElement = i.next();
-            if (Objects.equals(element, currentElement)) {
-                return i;
-            }
-        }
-
-        return null;
-    }
-
     @Override
     public int size() {
         return size;
@@ -184,22 +167,20 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean remove(Object o) {
-        ListIterator existedElement = getListIteratorForElement((E) o);
+        int address = getAddress((E) o);
 
-        if (existedElement != null) {
-            existedElement.remove();
-
-            if (!existedElement.hasNext()) {
-                data[getAddress((E) o)] = null;
-            }
-
-            size--;
-            modCount++;
-
-            return true;
+        if (data[address] == null) {
+            return false;
         }
 
-        return false;
+        boolean result = data[address].remove(o);
+
+        if (result) {
+            size--;
+            modCount++;
+        }
+
+        return result;
     }
 
     @Override
