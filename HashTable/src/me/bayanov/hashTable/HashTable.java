@@ -43,10 +43,8 @@ public class HashTable<E> implements Collection<E> {
             return false;
         }
 
-        for (Object object : data[address]) {
-            if (Objects.equals(o, object)) {
-                return true;
-            }
+        if (data[address].contains(o)) {
+            return true;
         }
 
         return false;
