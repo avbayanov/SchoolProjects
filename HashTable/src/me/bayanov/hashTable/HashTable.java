@@ -191,7 +191,7 @@ public class HashTable<E> implements Collection<E> {
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(Collection<?> c) {
         for (Object object : c) {
             if (!contains(object)) {
                 return false;
@@ -202,7 +202,7 @@ public class HashTable<E> implements Collection<E> {
     }
 
     @Override
-    public boolean addAll(Collection c) {
+    public boolean addAll(Collection<? extends E> c) {
         for (Object object : c) {
             add((E) object);
         }
@@ -211,7 +211,7 @@ public class HashTable<E> implements Collection<E> {
     }
 
     @Override
-    public boolean removeAll(Collection c) {
+    public boolean removeAll(Collection<?> c) {
         int modCountBefore = modCount;
 
         for (Object object : c) {
@@ -224,7 +224,7 @@ public class HashTable<E> implements Collection<E> {
     }
 
     @Override
-    public boolean retainAll(Collection c) {
+    public boolean retainAll(Collection<?> c) {
         int modCountBefore = modCount;
 
         for (int i = 0; i < data.length; i++) {
