@@ -16,9 +16,9 @@ public class Main {
         System.out.println(hashTable.containsAll(Arrays.asList(2, 3)));
         hashTable.addAll(Arrays.asList(4, 5));
         hashTable.removeAll(Arrays.asList(5, 6));
-//        hashTable.retainAll(Arrays.asList(1, 2, 3));
+        hashTable.retainAll(Arrays.asList(1, 2, 3));
 
-        Object[] objects = hashTable.toArray(new Object[10]);
+        Integer[] objects = hashTable.toArray(new Integer[1]);
 
         for (Object object : hashTable) {
             System.out.println(object);
