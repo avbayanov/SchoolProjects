@@ -3,7 +3,7 @@ package me.bayanov.hashTable;
 import java.util.*;
 
 public class HashTable<E> implements Collection<E> {
-    private List[] data;
+    private List<E>[] data;
     private int size;
     private int modCount;
 
