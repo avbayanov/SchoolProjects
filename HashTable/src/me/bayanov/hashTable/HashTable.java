@@ -8,6 +8,7 @@ public class HashTable<E> implements Collection<E> {
     private int modCount;
 
     public HashTable() {
+        //noinspection unchecked
         data = new LinkedList[100];
     }
 
@@ -15,10 +16,11 @@ public class HashTable<E> implements Collection<E> {
         if (length <= 0) {
             throw new IllegalArgumentException("Length must be > 0");
         }
+        //noinspection unchecked
         data = new LinkedList[length];
     }
 
-    private int getAddress(E element) {
+    private int getAddress(Object element) {
         if (element == null) {
             return 0;
         }
@@ -37,7 +39,7 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean contains(Object o) {
-        int address = getAddress((E) o);
+        int address = getAddress(o);
 
         if (data[address] == null) {
             return false;
@@ -89,10 +91,12 @@ public class HashTable<E> implements Collection<E> {
             }
 
             if (currentListIterator.hasNext()) {
+                //noinspection unchecked
                 return (E) currentListIterator.next();
             }
 
             nextListIterator();
+            //noinspection unchecked
             return (E) currentListIterator.next();
         }
     }
@@ -125,6 +129,7 @@ public class HashTable<E> implements Collection<E> {
         if (a.length >= size) {
             int resultCount = 0;
             for (E element : this) {
+                //noinspection unchecked
                 a[resultCount] = (T) element;
                 resultCount++;
             }
@@ -136,6 +141,7 @@ public class HashTable<E> implements Collection<E> {
             return a;
         }
 
+        //noinspection unchecked
         return (T[]) Arrays.copyOf(toArray(), size, a.getClass()) ;
     }
 
@@ -144,7 +150,7 @@ public class HashTable<E> implements Collection<E> {
         int address = getAddress(e);
 
         if (data[address] == null) {
-            data[address] = new LinkedList<E>();
+            data[address] = new LinkedList<>();
         }
 
         data[address].add(e);
@@ -157,7 +163,7 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean remove(Object o) {
-        int address = getAddress((E) o);
+        int address = getAddress(o);
 
         if (data[address] == null) {
             return false;
@@ -191,6 +197,7 @@ public class HashTable<E> implements Collection<E> {
     @Override
     public boolean addAll(Collection<? extends E> c) {
         for (Object object : c) {
+            //noinspection unchecked
             add((E) object);
         }
 
@@ -202,6 +209,7 @@ public class HashTable<E> implements Collection<E> {
         int modCountBefore = modCount;
 
         for (Object object : c) {
+            //noinspection StatementWithEmptyBody
             for (; remove(object);) {
             }
         }
@@ -217,7 +225,9 @@ public class HashTable<E> implements Collection<E> {
             if (data[i] != null) {
 
                 for (ListIterator iterator = data[i].listIterator(); iterator.hasNext(); ) {
+                    @SuppressWarnings("unchecked")
                     E currentElement = (E) iterator.next();
+
                     if (!c.contains(currentElement)) {
                         iterator.remove();
 
