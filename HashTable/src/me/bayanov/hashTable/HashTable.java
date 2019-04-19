@@ -50,7 +50,7 @@ public class HashTable<E> implements Collection<E> {
 
     private class HashTableIterator implements Iterator<E> {
         private int currentAddress = -1;
-        private ListIterator currentListIterator;
+        private ListIterator<E> currentListIterator;
         private int modCountBefore = modCount;
 
         private int getNextAddress() {
@@ -91,13 +91,11 @@ public class HashTable<E> implements Collection<E> {
             }
 
             if (currentListIterator.hasNext()) {
-                //noinspection unchecked
-                return (E) currentListIterator.next();
+                return currentListIterator.next();
             }
 
             nextListIterator();
-            //noinspection unchecked
-            return (E) currentListIterator.next();
+            return currentListIterator.next();
         }
     }
 
@@ -224,9 +222,8 @@ public class HashTable<E> implements Collection<E> {
         for (int i = 0; i < data.length; i++) {
             if (data[i] != null) {
 
-                for (ListIterator iterator = data[i].listIterator(); iterator.hasNext(); ) {
-                    @SuppressWarnings("unchecked")
-                    E currentElement = (E) iterator.next();
+                for (ListIterator<E> iterator = data[i].listIterator(); iterator.hasNext(); ) {
+                    E currentElement = iterator.next();
 
                     if (!c.contains(currentElement)) {
                         iterator.remove();
