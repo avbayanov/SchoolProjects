@@ -1,15 +1,32 @@
 package me.bayanov.tree;
 
+import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.function.Consumer;
 
 public class Tree<E> {
     private Node<E> root;
     private int size;
+    private Comparator<E> comparator;
+
+    public Tree() {
+    }
+
+    public Tree(Comparator<E> comparator) {
+        this.comparator = comparator;
+    }
 
     public int getSize() {
         return size;
+    }
+
+    private int compareEWithNodeE(E first, Node<E> second) {
+        if (comparator != null) {
+            return comparator.compare(first, second.getData());
+        }
+
+        //noinspection unchecked
+        return ((Comparable<E>) first).compareTo( second.getData());
     }
 
     public void add(E element) {
@@ -21,7 +38,7 @@ public class Tree<E> {
         }
 
         for (Node<E> current = root; ; ) {
-            if (element.hashCode() < current.getData().hashCode()) {
+            if (compareEWithNodeE(element, current) >= 0) {
                 if (current.hasLeft()) {
                     current = current.getLeft();
                 } else {
@@ -47,11 +64,11 @@ public class Tree<E> {
         }
 
         for (Node<E> current = root; ; ) {
-            if (Objects.equals(current.getData(), element)) {
+            if (compareEWithNodeE(element, current) == 0) {
                 return true;
             }
 
-            if (element.hashCode() < current.getData().hashCode()) {
+            if (compareEWithNodeE(element, current) >= 0) {
                 if (current.hasLeft()) {
                     current = current.getLeft();
                 } else {
@@ -167,7 +184,7 @@ public class Tree<E> {
 
         boolean isLeftChild;
         for (Node<E> current = root, previous; ; ) {
-            if (element.hashCode() < current.getData().hashCode()) {
+            if (compareEWithNodeE(element, current) >= 0) {
                 if (current.hasLeft()) {
                     previous = current;
                     current = current.getLeft();
@@ -185,7 +202,7 @@ public class Tree<E> {
                 }
             }
 
-            if (Objects.equals(current.getData(), element)) {
+            if (compareEWithNodeE(element, current) == 0) {
                 size--;
                 return removeCurrent(current, previous, isLeftChild);
             }
