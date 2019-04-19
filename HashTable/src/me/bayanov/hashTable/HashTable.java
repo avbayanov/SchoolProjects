@@ -194,9 +194,8 @@ public class HashTable<E> implements Collection<E> {
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        for (Object object : c) {
-            //noinspection unchecked
-            add((E) object);
+        for (E object : c) {
+            add(object);
         }
 
         return true;
