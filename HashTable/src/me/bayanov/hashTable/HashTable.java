@@ -207,7 +207,7 @@ public class HashTable<E> implements Collection<E> {
 
         for (Object object : c) {
             //noinspection StatementWithEmptyBody
-            for (; remove(object);) {
+            while (remove(object)) {
             }
         }
 
