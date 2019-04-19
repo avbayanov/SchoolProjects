@@ -108,10 +108,10 @@ public class HashTable<E> implements Collection<E> {
     public Object[] toArray() {
         Object[] result = new Object[size];
 
-        int resultCount = 0;
+        int i = 0;
         for (E element : this) {
-            result[resultCount] = element;
-            resultCount++;
+            result[i] = element;
+            i++;
         }
 
         return result;
@@ -125,11 +125,11 @@ public class HashTable<E> implements Collection<E> {
         }
 
         if (a.length >= size) {
-            int resultCount = 0;
+            int i = 0;
             for (E element : this) {
                 //noinspection unchecked
-                a[resultCount] = (T) element;
-                resultCount++;
+                a[i] = (T) element;
+                i++;
             }
 
             if (a.length > size) {
