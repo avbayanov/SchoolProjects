@@ -196,7 +196,7 @@ public class Tree<E> {
         LinkedList<Node<E>> nodes = new LinkedList<>();
         nodes.add(root);
 
-        for (; !nodes.isEmpty(); ) {
+        while (!nodes.isEmpty()) {
             Node<E> current = nodes.remove();
             consumer.accept(current.getData());
 
@@ -214,7 +214,7 @@ public class Tree<E> {
         LinkedList<Node<E>> nodes = new LinkedList<>();
         nodes.push(root);
 
-        for (; !nodes.isEmpty(); ) {
+        while (!nodes.isEmpty()) {
             Node<E> current = nodes.pop();
             consumer.accept(current.getData());
 
