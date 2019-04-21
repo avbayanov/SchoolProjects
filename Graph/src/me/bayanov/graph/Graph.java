@@ -64,4 +64,56 @@ public class Graph<E> {
             }
         }
     }
+
+    private void depthTraversalWithStack(Consumer<E> consumer, int node, boolean[] usedNodes) {
+        LinkedList<Integer> nodes = new LinkedList<>();
+        nodes.push(node);
+
+        while (!nodes.isEmpty()) {
+            int current = nodes.pop();
+            if (!usedNodes[current]) {
+                consumer.accept(data[current]);
+                usedNodes[current] = true;
+
+                for (int i = 0; i < connections[current].length; i++) {
+                    if (connections[current][i]) {
+                        nodes.push(i);
+                    }
+                }
+            }
+        }
+    }
+
+    public void depthTraversalWithStack(Consumer<E> consumer) {
+        boolean[] usedNodes = new boolean[data.length];
+
+        for (int i = 0; i < usedNodes.length; i++) {
+            if (!usedNodes[i]) {
+                depthTraversalWithStack(consumer, i, usedNodes);
+            }
+        }
+    }
+
+    private void depthTraversalWithRecursion(Consumer<E> consumer, int node, boolean[] usedNodes) {
+        if (usedNodes[node]) {
+            return;
+        }
+
+        consumer.accept(data[node]);
+        usedNodes[node] = true;
+
+        for (int i = 0; i < connections[node].length; i++) {
+            if (connections[node][i]) {
+                depthTraversalWithRecursion(consumer, i, usedNodes);
+            }
+        }
+    }
+
+    public void depthTraversalWithRecursion(Consumer<E> consumer) {
+        boolean[] usedNodes = new boolean[data.length];
+
+        for (int i = 0; i < usedNodes.length; i++) {
+            depthTraversalWithRecursion(consumer, i, usedNodes);
+        }
+    }
 }
