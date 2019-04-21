@@ -6,22 +6,23 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        int[] dataInt = new int[]{1, 2, 3, 4, 5, 6, 7};
-        Integer[] data = Arrays.stream(dataInt)
+        Integer[] data = Arrays.stream(new int[]{1, 2, 3, 4, 5, 6, 7})
                 .boxed()
                 .toArray(Integer[]::new);
 
         boolean[][] connections = new boolean[][]{
-                {false, false, false, false, false, false, false},
-                {false, false, true, true, false, true, false},
+                {false, true, false, false, false, false, false},
+                {true, false, true, true, true, true, false},
                 {false, true, false, false, false, false, true},
                 {false, true, false, false, false, false, false},
-                {false, false, false, false, false, true, false},
+                {false, true, false, false, false, true, false},
                 {false, true, false, false, true, false, true},
                 {false, false, true, false, false, true, false}
         };
 
         Graph<Integer> graph = new Graph<>(data, connections);
         graph.breadthTraversal(System.out::println);
+        graph.depthTraversalWithStack(System.out::println);
+        graph.depthTraversalWithRecursion(System.out::println);
     }
 }
