@@ -36,7 +36,7 @@ public class Graph<E> {
         this.connections = connections;
     }
 
-    private boolean[] breadthTraversal(Consumer<E> consumer, int node, boolean[] usedNodes) {
+    private void breadthTraversal(Consumer<E> consumer, int node, boolean[] usedNodes) {
         LinkedList<Integer> nodes = new LinkedList<>();
         nodes.add(node);
 
@@ -53,8 +53,6 @@ public class Graph<E> {
                 }
             }
         }
-
-        return usedNodes;
     }
 
     public void breadthTraversal(Consumer<E> consumer) {
@@ -62,7 +60,7 @@ public class Graph<E> {
 
         for (int i = 0; i < usedNodes.length; i++) {
             if (!usedNodes[i]) {
-                usedNodes = breadthTraversal(consumer, i, usedNodes);
+                breadthTraversal(consumer, i, usedNodes);
             }
         }
     }
