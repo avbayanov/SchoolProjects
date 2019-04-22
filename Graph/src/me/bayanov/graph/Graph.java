@@ -48,7 +48,7 @@ public class Graph<E> {
                 usedNodes[current] = true;
 
                 for (int i = 0; i < connections[current].length; i++) {
-                    if (connections[current][i]) {
+                    if (connections[current][i] && !usedNodes[i]) {
                         nodes.add(i);
                     }
                 }
@@ -77,7 +77,7 @@ public class Graph<E> {
                 usedNodes[current] = true;
 
                 for (int i = 0; i < connections[current].length; i++) {
-                    if (connections[current][i]) {
+                    if (connections[current][i] && !usedNodes[i]) {
                         nodes.push(i);
                     }
                 }
