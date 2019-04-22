@@ -1,6 +1,7 @@
 package me.bayanov.graph;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 public class Graph<E> {
@@ -37,7 +38,7 @@ public class Graph<E> {
     }
 
     private void breadthTraversal(Consumer<E> consumer, int node, boolean[] usedNodes) {
-        LinkedList<Integer> nodes = new LinkedList<>();
+        Queue<Integer> nodes = new LinkedList<>();
         nodes.add(node);
 
         while (!nodes.isEmpty()) {
