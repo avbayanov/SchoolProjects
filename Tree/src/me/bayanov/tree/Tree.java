@@ -25,11 +25,11 @@ public class Tree<E> {
             if (first == null && second == null) {
                 return 0;
             }
-            if (first == null) {
-                return -1;
-            }
             if (second == null) {
                 return 1;
+            }
+            if (first == null) {
+                return -1;
             }
 
             return comparator.compare(first, second);
