@@ -12,7 +12,7 @@ public class Main {
             UIManager.setLookAndFeel(
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Can not set native look",
+            JOptionPane.showMessageDialog(null, "Could not set native look",
                     "Warning", JOptionPane.WARNING_MESSAGE);
         }
 
