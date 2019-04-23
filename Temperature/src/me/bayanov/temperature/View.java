@@ -16,6 +16,14 @@ public class View {
     private JLabel toLabel;
 
     public View() {
+        try {
+            UIManager.setLookAndFeel(
+                    UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Could not set native look",
+                    "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+
         frame = new JFrame("Temperature converter");
         frame.setSize(235, 150);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

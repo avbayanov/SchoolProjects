@@ -8,14 +8,6 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Could not set native look",
-                    "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-
         Controller controller = new Controller(new Converter(), new View());
     }
 }
