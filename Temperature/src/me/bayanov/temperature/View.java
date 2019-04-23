@@ -17,7 +17,7 @@ public class View {
 
     public View() {
         frame = new JFrame("Temperature converter");
-        frame.setSize(300, 150);
+        frame.setSize(235, 150);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GridLayout layout = new GridLayout(3, 1);
@@ -63,12 +63,12 @@ public class View {
     private void drawCenterPanel() {
         centerPanel = new JPanel();
 
-        fromField = new JTextField(6);
+        fromField = new JTextField(5);
         fromLabel = new JLabel();
 
         JLabel equals = new JLabel("=");
 
-        toField = new JTextField(6);
+        toField = new JTextField(5);
         toLabel = new JLabel();
 
         centerPanel.add(fromField);
