@@ -226,6 +226,10 @@ public class Tree<E> {
     }
 
     public void breadthTraversal(Consumer<E> consumer) {
+        if (root == null) {
+            return;
+        }
+
         Queue<Node<E>> nodes = new LinkedList<>();
         nodes.add(root);
 
@@ -244,6 +248,10 @@ public class Tree<E> {
     }
 
     public void depthTraversalWithStack(Consumer<E> consumer) {
+        if (root == null) {
+            return;
+        }
+
         Deque<Node<E>> nodes = new LinkedList<>();
         nodes.push(root);
 
@@ -274,6 +282,10 @@ public class Tree<E> {
     }
 
     public void depthTraversalWithRecursion(Consumer<E> consumer) {
+        if (root == null) {
+            return;
+        }
+
         depthTraversalWithRecursion(consumer, root);
     }
 }
