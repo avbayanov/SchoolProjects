@@ -22,17 +22,17 @@ public class Tree<E> {
 
     private int compare(E first, E second) {
         if (comparator != null) {
-            if (first == null && second == null) {
-                return 0;
-            }
-            if (second == null) {
-                return 1;
-            }
-            if (first == null) {
-                return -1;
-            }
-
             return comparator.compare(first, second);
+        }
+
+        if (first == null && second == null) {
+            return 0;
+        }
+        if (second == null) {
+            return 1;
+        }
+        if (first == null) {
+            return -1;
         }
 
         //noinspection unchecked
