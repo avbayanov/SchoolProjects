@@ -1,5 +1,6 @@
 package me.bayanov.graph;
 
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.function.Consumer;
@@ -67,7 +68,7 @@ public class Graph<E> {
     }
 
     private void depthTraversalWithStack(Consumer<E> consumer, int node, boolean[] usedNodes) {
-        LinkedList<Integer> nodes = new LinkedList<>();
+        Deque<Integer> nodes = new LinkedList<>();
         nodes.push(node);
 
         while (!nodes.isEmpty()) {
