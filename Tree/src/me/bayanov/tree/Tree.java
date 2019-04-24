@@ -1,7 +1,9 @@
 package me.bayanov.tree;
 
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 public class Tree<E> {
@@ -224,7 +226,7 @@ public class Tree<E> {
     }
 
     public void breadthTraversal(Consumer<E> consumer) {
-        LinkedList<Node<E>> nodes = new LinkedList<>();
+        Queue<Node<E>> nodes = new LinkedList<>();
         nodes.add(root);
 
         while (!nodes.isEmpty()) {
@@ -242,7 +244,7 @@ public class Tree<E> {
     }
 
     public void depthTraversalWithStack(Consumer<E> consumer) {
-        LinkedList<Node<E>> nodes = new LinkedList<>();
+        Deque<Node<E>> nodes = new LinkedList<>();
         nodes.push(root);
 
         while (!nodes.isEmpty()) {
