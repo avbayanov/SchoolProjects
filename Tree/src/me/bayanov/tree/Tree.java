@@ -74,11 +74,13 @@ public class Tree<E> {
         }
 
         for (Node<E> current = root; ; ) {
-            if (compare(element, current.getData()) == 0) {
+            int comparison = compare(element, current.getData());
+
+            if (comparison == 0) {
                 return true;
             }
 
-            if (compare(element, current.getData()) < 0) {
+            if (comparison < 0) {
                 if (current.hasLeft()) {
                     current = current.getLeft();
                 } else {
@@ -194,7 +196,9 @@ public class Tree<E> {
 
         boolean isLeftChild;
         for (Node<E> current = root, previous; ; ) {
-            if (compare(element, current.getData()) < 0) {
+            int comparison = compare(element, current.getData());
+
+            if (comparison < 0) {
                 if (current.hasLeft()) {
                     previous = current;
                     current = current.getLeft();
@@ -212,7 +216,7 @@ public class Tree<E> {
                 }
             }
 
-            if (compare(element, current.getData()) == 0) {
+            if (comparison == 0) {
                 size--;
                 return removeCurrent(current, previous, isLeftChild);
             }
