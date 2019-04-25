@@ -6,20 +6,6 @@ public class Controller {
     private Converter model;
     private View view;
 
-    private enum SystemLabels {
-        CELSIUS ("\u00B0C", 0),
-        KELVIN ("\u00B0K", 1),
-        FAHRENHEIT ("\u00B0F", 2);
-
-        private final String label;
-        private final int index;
-
-        SystemLabels(String label, int index) {
-            this.label = label;
-            this.index = index;
-        }
-    }
-
     public Controller(Converter model, View view) {
         this.model = model;
         this.view = view;
@@ -27,16 +13,18 @@ public class Controller {
     }
 
     private void initView() {
-        for (SystemLabels system : SystemLabels.values()) {
+        for (Converter.Systems system : Converter.Systems.values()) {
             //noinspection unchecked
-            view.getFromList().addItem(system.label);
+            view.getFromList().addItem("\u00B0" + system.name().charAt(0));
         }
-        for (SystemLabels system : SystemLabels.values()) {
+        for (Converter.Systems system : Converter.Systems.values()) {
             //noinspection unchecked
-            view.getToList().addItem(system.label);
+            view.getToList().addItem("\u00B0" + system.name().charAt(0));
         }
 
-        view.getToList().setSelectedIndex(SystemLabels.KELVIN.index);
+        if (view.getToList().getItemCount() > 1) {
+            view.getToList().setSelectedIndex(1);
+        }
 
         view.getFromField().setText("0");
         view.getToField().setEditable(false);
@@ -70,16 +58,7 @@ public class Controller {
         view.getToField().setText(String.format ("%.2f", model.getToNumber()));
     }
 
-    private Converter.System getSystem(JComboBox list) {
-        switch (list.getSelectedIndex()) {
-            case 0:
-                return Converter.System.CELSIUS;
-            case 1:
-                return Converter.System.KELVIN;
-            case 2:
-                return Converter.System.FAHRENHEIT;
-            default:
-                throw new IllegalArgumentException();
-        }
+    private Converter.Systems getSystem(JComboBox list) {
+        return Converter.Systems.getElementByIndex(list.getSelectedIndex());
     }
 }

@@ -1,8 +1,21 @@
 package me.bayanov.temperature;
 
 public class Converter {
-    public enum System {
-        CELSIUS, KELVIN, FAHRENHEIT
+    public enum Systems {
+        CELSIUS, KELVIN, FAHRENHEIT;
+
+        public static Systems getElementByIndex(int index) {
+            switch (index) {
+                case 0:
+                    return CELSIUS;
+                case 1:
+                    return KELVIN;
+                case 2:
+                    return FAHRENHEIT;
+                default:
+                    throw new IllegalArgumentException();
+            }
+        }
     }
 
     private static double toFahrenheitMultiplier = 9F / 5;
@@ -11,7 +24,7 @@ public class Converter {
     private static double kelvinFahrenheitDifference = 459.67;
 
     private double fromNumber, toNumber;
-    private System fromSystem, toSystem;
+    private Systems fromSystem, toSystem;
 
     public Converter() {
     }
@@ -20,11 +33,11 @@ public class Converter {
         this.fromNumber = fromNumber;
     }
 
-    void setFromSystem(System fromSystem) {
+    void setFromSystem(Systems fromSystem) {
         this.fromSystem = fromSystem;
     }
 
-    void setToSystem(System toSystem) {
+    void setToSystem(Systems toSystem) {
         this.toSystem = toSystem;
     }
 
