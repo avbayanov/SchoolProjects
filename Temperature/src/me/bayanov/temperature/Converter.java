@@ -38,61 +38,49 @@ public class Converter {
 
     private void convert() {
         switch (fromSystem) {
-            case CELSIUS: {
+            case CELSIUS:
                 convertFromCelsius();
                 return;
-            }
-            case KELVIN: {
+            case KELVIN:
                 convertFromKelvin();
                 return;
-            }
-            case FAHRENHEIT: {
+            case FAHRENHEIT:
                 convertFromFahrenheit();
                 return;
-            }
-            default: {
+            default:
                 throw new IllegalArgumentException("fromSystem must be not null");
-            }
         }
     }
 
     private void convertFromCelsius() {
         switch (toSystem) {
-            case CELSIUS: {
+            case CELSIUS:
                 toNumber = fromNumber;
                 return;
-            }
-            case KELVIN: {
+            case KELVIN:
                 toNumber = fromNumber + celsiusKelvinDifference;
                 return;
-            }
-            case FAHRENHEIT: {
+            case FAHRENHEIT:
                 toNumber = fromNumber * toFahrenheitMultiplier + celsiusFahrenheitDifference;
                 return;
-            }
-            default: {
+            default:
                 throw new IllegalArgumentException("toSystem must be not null");
-            }
         }
     }
 
     private void convertFromKelvin() {
         switch (toSystem) {
-            case CELSIUS: {
+            case CELSIUS:
                 toNumber = fromNumber - celsiusKelvinDifference;
                 return;
-            }
-            case KELVIN: {
+            case KELVIN:
                 toNumber = fromNumber;
                 return;
-            }
-            case FAHRENHEIT: {
+            case FAHRENHEIT:
                 toNumber = fromNumber * toFahrenheitMultiplier - kelvinFahrenheitDifference;
                 return;
-            }
-            default: {
+            default:
                 throw new IllegalArgumentException("toSystem must be not null");
-            }
         }
     }
 
@@ -100,21 +88,17 @@ public class Converter {
         double fromFahrenheitMultiplier = 5F / 9;
 
         switch (toSystem) {
-            case CELSIUS: {
+            case CELSIUS:
                 toNumber = (fromNumber - celsiusFahrenheitDifference) * fromFahrenheitMultiplier;
                 return;
-            }
-            case KELVIN: {
+            case KELVIN:
                 toNumber = (fromNumber + kelvinFahrenheitDifference) * fromFahrenheitMultiplier;
                 return;
-            }
-            case FAHRENHEIT: {
+            case FAHRENHEIT:
                 toNumber = fromNumber;
                 return;
-            }
-            default: {
+            default:
                 throw new IllegalArgumentException("toSystem must be not null");
-            }
         }
     }
 }

@@ -72,18 +72,14 @@ public class Controller {
 
     private Converter.System getSystem(JComboBox list) {
         switch (list.getSelectedIndex()) {
-            case 0: {
+            case 0:
                 return Converter.System.CELSIUS;
-            }
-            case 1: {
+            case 1:
                 return Converter.System.KELVIN;
-            }
-            case 2: {
+            case 2:
                 return Converter.System.FAHRENHEIT;
-            }
-            default: {
+            default:
                 throw new IllegalArgumentException();
-            }
         }
     }
 }
