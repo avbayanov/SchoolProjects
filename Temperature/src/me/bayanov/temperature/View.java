@@ -26,6 +26,7 @@ public class View {
 
         frame = new JFrame("Temperature converter");
         frame.setSize(235, 150);
+        frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         GridLayout layout = new GridLayout(3, 1);
