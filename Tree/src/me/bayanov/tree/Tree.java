@@ -196,9 +196,14 @@ public class Tree<E> {
             return false;
         }
 
-        boolean isLeftChild;
-        for (Node<E> current = root, previous; ; ) {
+        boolean isLeftChild = false;
+        for (Node<E> current = root, previous = root; ; ) {
             int comparison = compare(element, current.getData());
+
+            if (comparison == 0) {
+                size--;
+                return removeCurrent(current, previous, isLeftChild);
+            }
 
             if (comparison < 0) {
                 if (current.hasLeft()) {
@@ -216,11 +221,6 @@ public class Tree<E> {
                 } else {
                     return false;
                 }
-            }
-
-            if (comparison == 0) {
-                size--;
-                return removeCurrent(current, previous, isLeftChild);
             }
         }
     }
