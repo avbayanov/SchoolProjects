@@ -25,7 +25,10 @@ public class View {
         }
 
         frame = new JFrame("Temperature converter");
+
         frame.setSize(235, 150);
+        frame.setMinimumSize(new Dimension(212, 130));
+
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
