@@ -4,7 +4,7 @@ public class Converter {
     public enum Systems {
         CELSIUS, KELVIN, FAHRENHEIT;
 
-        public static Systems getElementByIndex(int index) {
+        public static Systems getByIndex(int index) {
             switch (index) {
                 case 0:
                     return CELSIUS;

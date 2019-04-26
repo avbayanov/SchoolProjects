@@ -59,6 +59,6 @@ public class Controller {
     }
 
     private Converter.Systems getSystem(JComboBox list) {
-        return Converter.Systems.getElementByIndex(list.getSelectedIndex());
+        return Converter.Systems.getByIndex(list.getSelectedIndex());
     }
 }
