@@ -197,7 +197,7 @@ public class Tree<E> {
         }
 
         boolean isLeftChild = false;
-        for (Node<E> current = root, previous = root; ; ) {
+        for (Node<E> current = root, previous = null; ; ) {
             int comparison = compare(element, current.getData());
 
             if (comparison == 0) {
