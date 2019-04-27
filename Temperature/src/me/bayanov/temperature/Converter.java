@@ -13,7 +13,7 @@ public class Converter {
                 case 2:
                     return FAHRENHEIT;
                 default:
-                    throw new IllegalArgumentException();
+                    throw new IllegalArgumentException("No such index in Systems");
             }
         }
     }
