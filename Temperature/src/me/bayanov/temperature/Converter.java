@@ -18,10 +18,10 @@ public class Converter {
         }
     }
 
-    private static double toFahrenheitMultiplier = 9F / 5;
-    private static double celsiusKelvinDifference = 273.15;
-    private static double celsiusFahrenheitDifference = 32;
-    private static double kelvinFahrenheitDifference = 459.67;
+    private static final double toFahrenheitMultiplier = 9F / 5;
+    private static final double celsiusKelvinDifference = 273.15;
+    private static final double celsiusFahrenheitDifference = 32;
+    private static final double kelvinFahrenheitDifference = 459.67;
 
     private double fromNumber, toNumber;
     private Systems fromSystem, toSystem;
