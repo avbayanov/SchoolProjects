@@ -17,8 +17,7 @@ public class View {
 
     public View() {
         try {
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Could not set native look",
                     "Warning", JOptionPane.WARNING_MESSAGE);

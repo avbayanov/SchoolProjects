@@ -55,7 +55,7 @@ public class Controller {
         updateModel();
         view.getFromLabel().setText((String) view.getFromList().getSelectedItem());
         view.getToLabel().setText((String) view.getToList().getSelectedItem());
-        view.getToField().setText(String.format ("%.2f", model.getToNumber()));
+        view.getToField().setText(String.format("%.2f", model.getToNumber()));
     }
 
     private Converter.Systems getSystem(JComboBox list) {
