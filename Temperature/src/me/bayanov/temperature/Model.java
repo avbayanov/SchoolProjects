@@ -6,8 +6,11 @@ import java.util.LinkedHashMap;
 import java.util.Set;
 
 public class Model {
-    private double fromNumber, toNumber;
-    private String fromSystem, toSystem;
+    private double fromNumber;
+    private double toNumber;
+
+    private String fromSystem;
+    private String toSystem;
 
     private final LinkedHashMap<String, Converter> converters = new LinkedHashMap<>();
 
