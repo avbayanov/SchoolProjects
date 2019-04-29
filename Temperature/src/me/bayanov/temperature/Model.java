@@ -18,7 +18,6 @@ public class Model {
         converters.put("\u00B0C", new CelsiusConverter());
         converters.put("\u00B0K", new KelvinConverter());
         converters.put("\u00B0F", new FahrenheitConverter());
-
     }
 
     void setFromNumber(double fromNumber) {
