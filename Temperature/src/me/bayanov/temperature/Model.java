@@ -18,20 +18,20 @@ public class Model {
     private double fromNumber, toNumber;
     private Systems fromSystem, toSystem;
 
-    private final HashMap<Systems, HashMap<Systems, Converter>> converters = new HashMap<>();
+    private final HashMap<Systems, HashMap<Systems, Converter>> converters = new HashMap<>(Systems.values.length);
 
     public Model() {
-        converters.put(Systems.CELSIUS, new HashMap<>());
+        converters.put(Systems.CELSIUS, new HashMap<>(Systems.values.length));
         converters.get(Systems.CELSIUS).put(Systems.CELSIUS, fromNumber -> fromNumber);
         converters.get(Systems.CELSIUS).put(Systems.KELVIN, new ConverterFromCelsiusToKelvin());
         converters.get(Systems.CELSIUS).put(Systems.FAHRENHEIT, new ConverterFromCelsiusToFahrenheit());
 
-        converters.put(Systems.KELVIN, new HashMap<>());
+        converters.put(Systems.KELVIN, new HashMap<>(Systems.values.length));
         converters.get(Systems.KELVIN).put(Systems.CELSIUS, new ConverterFromKelvinToCelsius());
         converters.get(Systems.KELVIN).put(Systems.KELVIN, fromNumber -> fromNumber);
         converters.get(Systems.KELVIN).put(Systems.FAHRENHEIT, new ConverterFromKelvinToFahrenheit());
 
-        converters.put(Systems.FAHRENHEIT, new HashMap<>());
+        converters.put(Systems.FAHRENHEIT, new HashMap<>(Systems.values.length));
         converters.get(Systems.FAHRENHEIT).put(Systems.CELSIUS, new ConverterFromFahrenheitToCelsius());
         converters.get(Systems.FAHRENHEIT).put(Systems.KELVIN, new ConverterFromFahrenheitToKelvin());
         converters.get(Systems.FAHRENHEIT).put(Systems.FAHRENHEIT, fromNumber -> fromNumber);
