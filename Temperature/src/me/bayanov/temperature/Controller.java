@@ -13,13 +13,11 @@ public class Controller {
     }
 
     private void initView() {
-        for (Model.Systems system : Model.Systems.values) {
+        for (String system : model.getConvertersNames()) {
             //noinspection unchecked
-            view.getFromList().addItem("\u00B0" + system.name().charAt(0));
-        }
-        for (Model.Systems system : Model.Systems.values) {
+            view.getFromList().addItem(system);
             //noinspection unchecked
-            view.getToList().addItem("\u00B0" + system.name().charAt(0));
+            view.getToList().addItem(system);
         }
 
         if (view.getToList().getItemCount() > 1) {
@@ -52,19 +50,14 @@ public class Controller {
     }
 
     private void updateView() {
-        try {
-            updateModel();
-        } catch (IllegalArgumentException e) {
-            JOptionPane.showMessageDialog(null, e, "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        updateModel();
 
         view.getFromLabel().setText((String) view.getFromList().getSelectedItem());
         view.getToLabel().setText((String) view.getToList().getSelectedItem());
         view.getToField().setText(String.format("%.2f", model.getToNumber()));
     }
 
-    private Model.Systems getSystem(JComboBox list) {
-        return Model.Systems.getByIndex(list.getSelectedIndex());
+    private String getSystem(JComboBox list) {
+        return (String) list.getSelectedItem();
     }
 }

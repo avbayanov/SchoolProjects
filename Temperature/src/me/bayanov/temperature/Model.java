@@ -2,50 +2,31 @@ package me.bayanov.temperature;
 
 import me.bayanov.temperature.Converter.*;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Set;
 
 public class Model {
-    public enum Systems {
-        CELSIUS, KELVIN, FAHRENHEIT;
-
-        public static final Systems[] values = values();
-
-        public static Systems getByIndex(int index) {
-            return values[index];
-        }
-    }
-
     private double fromNumber, toNumber;
-    private Systems fromSystem, toSystem;
+    private String fromSystem, toSystem;
 
-    private final HashMap<Systems, HashMap<Systems, Converter>> converters = new HashMap<>(Systems.values.length);
+    private final LinkedHashMap<String, Converter> converters = new LinkedHashMap<>();
 
     public Model() {
-        converters.put(Systems.CELSIUS, new HashMap<>(Systems.values.length));
-        converters.get(Systems.CELSIUS).put(Systems.CELSIUS, fromNumber -> fromNumber);
-        converters.get(Systems.CELSIUS).put(Systems.KELVIN, new ConverterFromCelsiusToKelvin());
-        converters.get(Systems.CELSIUS).put(Systems.FAHRENHEIT, new ConverterFromCelsiusToFahrenheit());
+        converters.put("\u00B0C", new CelsiusConverter());
+        converters.put("\u00B0K", new KelvinConverter());
+        converters.put("\u00B0F", new FahrenheitConverter());
 
-        converters.put(Systems.KELVIN, new HashMap<>(Systems.values.length));
-        converters.get(Systems.KELVIN).put(Systems.CELSIUS, new ConverterFromKelvinToCelsius());
-        converters.get(Systems.KELVIN).put(Systems.KELVIN, fromNumber -> fromNumber);
-        converters.get(Systems.KELVIN).put(Systems.FAHRENHEIT, new ConverterFromKelvinToFahrenheit());
-
-        converters.put(Systems.FAHRENHEIT, new HashMap<>(Systems.values.length));
-        converters.get(Systems.FAHRENHEIT).put(Systems.CELSIUS, new ConverterFromFahrenheitToCelsius());
-        converters.get(Systems.FAHRENHEIT).put(Systems.KELVIN, new ConverterFromFahrenheitToKelvin());
-        converters.get(Systems.FAHRENHEIT).put(Systems.FAHRENHEIT, fromNumber -> fromNumber);
     }
 
     void setFromNumber(double fromNumber) {
         this.fromNumber = fromNumber;
     }
 
-    void setFromSystem(Systems fromSystem) {
+    void setFromSystem(String fromSystem) {
         this.fromSystem = fromSystem;
     }
 
-    void setToSystem(Systems toSystem) {
+    void setToSystem(String toSystem) {
         this.toSystem = toSystem;
     }
 
@@ -53,14 +34,16 @@ public class Model {
         return toNumber;
     }
 
+    Set<String> getConvertersNames() {
+        return converters.keySet();
+    }
+
     void update() {
         convert();
     }
 
     private void convert() {
-        if (!converters.containsKey(fromSystem) || !converters.get(fromSystem).containsKey(toSystem)) {
-            throw new IllegalArgumentException("No such converter: from " + fromSystem + " to: " + toSystem);
-        }
-        toNumber = converters.get(fromSystem).get(toSystem).convert(fromNumber);
+        double fromInCelsius = converters.get(fromSystem).convertToCelsius(fromNumber);
+        toNumber = converters.get(toSystem).convertFromCelsius(fromInCelsius);
     }
 }
