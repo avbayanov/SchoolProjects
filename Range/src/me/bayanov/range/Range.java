@@ -54,6 +54,8 @@ public class Range {
                     new Range(Math.min(from, range.from), Math.min(to, range.to)),
                     new Range(Math.max(from, range.from), Math.max(to, range.to))
             };
+            // Можно упростить 
+            // return new Range[]{new Range(from, to), new Range(range.from, range.to)};
         }
     }
 
