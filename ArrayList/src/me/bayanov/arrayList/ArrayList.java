@@ -268,6 +268,7 @@ public class ArrayList<E> implements List<E> {
 
         E beforeRemove = data[index];
 
+        // TODO Check if removed last element 
         System.arraycopy(data, index + 1, data, index, size - index - 1);
 
         size--;
