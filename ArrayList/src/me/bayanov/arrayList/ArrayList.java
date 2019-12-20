@@ -164,8 +164,10 @@ public class ArrayList<E> implements List<E> {
         if (c.size() != 0) {
             ensureCapacity(size + c.size());
 
-            System.arraycopy(data, index, data, index + c.size(), size - index);
-
+            if (size > index) {
+                System.arraycopy(data, index, data, index + c.size(), size - index);
+            }
+                
             int i = index;
             for (E object : c) {
                 data[i] = object;
